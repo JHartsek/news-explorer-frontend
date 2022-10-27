@@ -1,4 +1,5 @@
 .registration-success {
+  grid-area: content;
   background-color: #fff;
   display: flex;
   flex-direction: column;

@@ -1,17 +1,16 @@
-import './Nav.css';
+import './Navigation.css';
 import logoutIcon from '../../images/logout.svg';
 
-function Nav() {
+function Navigation() {
   return (
     <nav className='nav'>
       <a href='/' className='nav__link'>
-        {' '}
-        Home{' '}
+        Home
       </a>
       <a href='/' className='nav__link'>
         Saved articles
       </a>
-      <a href='/' className='nav__button'>
+      <a href='/' className='nav__link'> 
         Elise
         <img className='nav__button__icon' src={logoutIcon} alt='logout icon' />
       </a>
@@ -19,4 +18,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Navigation;

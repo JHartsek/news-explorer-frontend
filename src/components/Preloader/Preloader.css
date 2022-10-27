@@ -1,0 +1,59 @@
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.preloader {
+	margin: 0;
+    height: 282px;
+	background-color: #F5F6F7;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 24px;
+}
+
+@media screen and (max-width: 900px) {
+    .preloader {
+        height: 400px;
+    }
+}
+
+.preloader__visible {
+    display: flex;
+}
+
+.preloader__circe {
+	display: block;
+	width: 74px;
+	height: 74px;
+	border: 1px solid #444;
+	border-bottom-color: #888;
+	border-radius: 50%;
+	animation: spin .75s infinite linear;
+}
+
+@media screen and (max-width: 900px) {
+    .preloader__circe {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+.preloader__text {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.33;  
+    color: rgba(182, 188, 191, 1);
+}
+
+@media screen and (max-width: 900px) {
+    .preloader__text {
+        font-size: 16px;
+    }
+}
+

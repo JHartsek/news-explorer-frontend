@@ -1,4 +1,12 @@
 @font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 400;
+    src: url("./Inter/Inter-Regular.ttf") format("truetype");
+}
+
+
+@font-face {
     font-family: 'Source Sans Pro';
     font-style:  normal;
     font-weight: 400;
@@ -17,6 +25,13 @@
     font-style:  normal;
     font-weight: 500;
     src: url("./Roboto/Roboto-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style:  normal;
+    font-weight: 900;
+    src: url("./Roboto/Roboto-Black.ttf") format("truetype");
 }
 
 @font-face {

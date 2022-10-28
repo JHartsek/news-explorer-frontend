@@ -23,25 +23,25 @@
   .header {
     padding: 0 16px;
     height: 56px;
-  } 
+  }
 }
 
 .header__title {
   margin: 0;
   font-family: 'Roboto Slab', serif;
-font-size: 20px;
-font-weight: 700;
-line-height: 1.2;
-color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 544px) {
   .header__title {
-  font-size: 16px;
-  line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
 
 .header__title_page_saved_news {
-  color: rgba(26, 27, 34, 1)
+  color: rgba(26, 27, 34, 1);
 }

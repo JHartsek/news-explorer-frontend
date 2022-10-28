@@ -94,4 +94,7 @@
 .form__link {
   text-decoration: none;
   color: rgba(47, 113, 229, 1);
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }

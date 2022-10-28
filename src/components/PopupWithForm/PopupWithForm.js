@@ -1,16 +1,17 @@
 import './PopupWithForm.css';
-import { Link } from 'react-router-dom';
 
 function PopupWithForm({
   name,
-  title,id, 
+  title,
+  id,
   buttonText,
   linkText,
+  onLinkClick,
   isOpen,
   onClose,
   onSubmit,
   children,
-  isValid
+  isValid,
 }) {
   return (
     <section
@@ -39,7 +40,12 @@ function PopupWithForm({
           >
             {buttonText}
           </button>
-          <p className='form__link-header'> or <Link className='form__link' to='/'>{linkText}</Link></p>
+          <p className='form__link-header'>
+            {`or `}
+            <button className='form__link' onClick={onLinkClick}>
+              {linkText}
+            </button>
+          </p>
         </form>
       </div>
     </section>

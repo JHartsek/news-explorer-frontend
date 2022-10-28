@@ -33,16 +33,19 @@ function App() {
     setIsSignInFormOpen(false);
   }
 
-  const onNavButtonClick = () => {
-    if ((currentPage = 'home')) {
-      setCurrentPage('saved-news');
-      //history.push('/saved-news')
-    } else {
-      setCurrentPage('home');
-      //history.push('/')
-    }
-    setIsLoggedIn(!isLoggedIn);
-  };
+  function handleSignInClick() {
+    setIsSignUpFormOpen(false);
+    setIsSignInFormOpen(true);
+  }
+
+  function handleSignOutClick() {
+    console.log('you signed out');
+  }
+
+  function handleSignUpClick() {
+    setIsSignInFormOpen(false);
+    setIsSignUpFormOpen(true);
+  }
 
   React.useEffect(() => {
     getScreenWidth();
@@ -66,7 +69,8 @@ function App() {
             currentPage={currentPage}
             isLoggedIn={isLoggedIn}
             device={device}
-            onNavButtonClick={onNavButtonClick}
+            onSignInClick={handleSignInClick}
+            onSignOutClock={handleSignOutClick}
           />
           <SavedNewsHeader />
           <SavedNew />
@@ -78,7 +82,8 @@ function App() {
             currentPage={currentPage}
             isLoggedIn={isLoggedIn}
             device={device}
-            onNavButtonClick={onNavButtonClick}
+            onSignInClick={handleSignInClick}
+            onSignOutClock={handleSignOutClick}
           />
           <Main />
           <Preloader />
@@ -86,8 +91,8 @@ function App() {
           <NewsCardList />
           <About />
           <Footer />
-          <SignUpForm isOpen={isSignUpFormOpen} onClose={closeAllPopups} />
-          <SignInForm isOpen={isSignInFormOpen} onClose={closeAllPopups} />
+          <SignUpForm isOpen={isSignUpFormOpen} onClose={closeAllPopups} onLinkClick={handleSignInClick} />
+          <SignInForm isOpen={isSignInFormOpen} onClose={closeAllPopups} onLinkClick={handleSignUpClick}/>
           <Popup>
             <RegistrationSuccess />
           </Popup>

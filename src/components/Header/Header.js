@@ -2,7 +2,13 @@ import './Header.css';
 
 import Navigation from '../Navigation/Navigation';
 
-function Header({ currentPage, isLoggedIn, device, onNavButtonClick }) {
+function Header({
+  currentPage,
+  isLoggedIn,
+  device,
+  onSignInClick,
+  onSignOutClick,
+}) {
   return (
     <header className='header'>
       <h1
@@ -16,7 +22,8 @@ function Header({ currentPage, isLoggedIn, device, onNavButtonClick }) {
         currentPage={currentPage}
         isLoggedIn={isLoggedIn}
         device={device}
-        onNavButtonClick={onNavButtonClick}
+        onSignInClick={onSignInClick}
+        onSignOutClock={onSignOutClick}
       />
     </header>
   );

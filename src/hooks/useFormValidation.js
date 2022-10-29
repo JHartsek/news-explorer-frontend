@@ -6,7 +6,7 @@ export function useFormValidation() {
   const [isValid, setIsValid] = React.useState(false);
 
   function handleChange(e) {
-    const form = e.target.closest('.form');
+    const form = e.target.closest('form');
     const { name, value } = e.target;
     setInputValues({ ...inputValues, [name]: value });
     setErrors({ ...errors, [name]: e.target.validationMessage });

@@ -16,12 +16,15 @@ import Footer from '../Footer/Footer';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import SignInForm from '../SignInForm/SignInForm';
 
+import { searchForNews } from '../../utils/NewsApi';
+
 function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
+  const [newCards, setNewsCards] = React.useState({});
 
   function getScreenWidth() {
     if (window.innerWidth <= 525) {
@@ -45,6 +48,16 @@ function App() {
   function handleSignUpClick() {
     setIsSignInFormOpen(false);
     setIsSignUpFormOpen(true);
+  }
+
+  function handleSearch(keyword) {
+    searchForNews(keyword)
+      .then(({ articles }) => {
+        setNewsCards(articles);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   React.useEffect(() => {
@@ -85,14 +98,22 @@ function App() {
             onSignInClick={handleSignInClick}
             onSignOutClock={handleSignOutClick}
           />
-          <Main />
+          <Main onSearchSubmit={handleSearch} />
           <Preloader />
           <NoResults />
           <NewsCardList />
           <About />
           <Footer />
-          <SignUpForm isOpen={isSignUpFormOpen} onClose={closeAllPopups} onLinkClick={handleSignInClick} />
-          <SignInForm isOpen={isSignInFormOpen} onClose={closeAllPopups} onLinkClick={handleSignUpClick}/>
+          <SignUpForm
+            isOpen={isSignUpFormOpen}
+            onClose={closeAllPopups}
+            onLinkClick={handleSignInClick}
+          />
+          <SignInForm
+            isOpen={isSignInFormOpen}
+            onClose={closeAllPopups}
+            onLinkClick={handleSignUpClick}
+          />
           <Popup>
             <RegistrationSuccess />
           </Popup>

@@ -3,7 +3,13 @@ import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 import React from 'react';
 
-function NewsCardList({ displayedCards, onShowMoreClick, showMoreStatus }) {
+function NewsCardList({
+  displayedCards,
+  onShowMoreClick,
+  showMoreStatus,
+  onSignInClick,
+  isLoggedIn,
+}) {
   return (
     <section className='news-card-list'>
       <h1 className='news-card-list__title'>Search results</h1>
@@ -18,6 +24,8 @@ function NewsCardList({ displayedCards, onShowMoreClick, showMoreStatus }) {
               title={card.title}
               description={card.description}
               source={card.source.name}
+              onSignInClick={onSignInClick}
+              isLoggedIn={isLoggedIn}
             />
           );
         })}

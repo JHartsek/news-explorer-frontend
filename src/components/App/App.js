@@ -130,6 +130,8 @@ function App() {
               displayedCards={displayedCards}
               onShowMoreClick={showMoreCards}
               showMoreStatus={showMoreStatus}
+              isLoggedIn={isLoggedIn}
+              onSignInClick={handleSignInClick}
             />
           )}
           <About />

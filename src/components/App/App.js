@@ -24,7 +24,19 @@ function App() {
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
-  const [newCards, setNewsCards] = React.useState({});
+  const [searchStatus, setSearchStatus] = React.useState('default');
+  const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
+  const [newsCards, setNewsCards] = React.useState([]);
+  const [displayedCardCount, setDisplayedCardCount] = React.useState(3);
+  const [displayedCards, setDisplayedCards] = React.useState([]);
+
+  function showMoreCards() {
+    setDisplayedCards(newsCards.slice(0, displayedCardCount + 3));
+    setDisplayedCardCount(displayedCardCount + 3);
+    if (displayedCardCount === newsCards.length) {
+      setShowMoreStatus('hidden');
+    }
+  }
 
   function getScreenWidth() {
     if (window.innerWidth <= 525) {
@@ -54,8 +66,18 @@ function App() {
     searchForNews(keyword)
       .then(({ articles }) => {
         setNewsCards(articles);
+        if (articles.length === 0) {
+          setSearchStatus('no-results');
+        }
+        if (articles.length <= 3) {
+          setShowMoreStatus('hidden');
+        }
+        setSearchStatus('results');
+        setDisplayedCards(articles.slice(0, 3));
+        setDisplayedCardCount(3);
       })
       .catch((err) => {
+        setSearchStatus('error');
         console.log(err);
       });
   }
@@ -99,9 +121,17 @@ function App() {
             onSignOutClock={handleSignOutClick}
           />
           <Main onSearchSubmit={handleSearch} />
-          <Preloader />
-          <NoResults />
-          <NewsCardList />
+          {searchStatus === 'loading' && <Preloader />}
+          {(searchStatus === 'no-results' || searchStatus === 'error') && (
+            <NoResults searchStatus={searchStatus} />
+          )}
+          {searchStatus === 'results' && (
+            <NewsCardList
+              displayedCards={displayedCards}
+              onShowMoreClick={showMoreCards}
+              showMoreStatus={showMoreStatus}
+            />
+          )}
           <About />
           <Footer />
           <SignUpForm

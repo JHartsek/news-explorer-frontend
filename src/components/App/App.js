@@ -9,7 +9,7 @@ import About from '../About/About';
 import Preloader from '../Preloader/Preloader';
 import NoResults from '../NoResults/NoResults';
 import NewsCardList from '../NewsCardList/NewCardList';
-import SavedNew from '../SavedNews/SavedNews';
+import SavedNews from '../SavedNews/SavedNews';
 import Popup from '../Popup/Popup';
 import RegistrationSuccess from '../RegistrationSuccess/RegistrationSuccess';
 import Footer from '../Footer/Footer';
@@ -24,11 +24,15 @@ function App() {
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
-  const [searchStatus, setSearchStatus] = React.useState('default');
+  const [searchStatus, setSearchStatus] = React.useState('defualt');
+  const [keyword, setKeyword] = React.useState('');
   const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
   const [newsCards, setNewsCards] = React.useState([]);
   const [displayedCardCount, setDisplayedCardCount] = React.useState(3);
-  const [displayedCards, setDisplayedCards] = React.useState([]);
+  const [displayedCards, setDisplayedCards] = React.useState(
+    JSON.parse(localStorage.getItem('displayedCards'))
+  );
+  const [savedCards, setSavedCards] = React.useState([]);
 
   function showMoreCards() {
     setDisplayedCards(newsCards.slice(0, displayedCardCount + 3));
@@ -54,7 +58,7 @@ function App() {
   }
 
   function handleSignOutClick() {
-    console.log('you signed out');
+    setIsLoggedIn(false);
   }
 
   function handleSignUpClick() {
@@ -62,7 +66,13 @@ function App() {
     setIsSignUpFormOpen(true);
   }
 
+  React.useEffect(() => {
+    localStorage.setItem('displayedCards', JSON.stringify(displayedCards));
+  }, [displayedCards, displayedCardCount]);
+
   function handleSearch(keyword) {
+    setSearchStatus('loading');
+    setKeyword(keyword);
     searchForNews(keyword)
       .then(({ articles }) => {
         setNewsCards(articles);
@@ -79,7 +89,14 @@ function App() {
       .catch((err) => {
         setSearchStatus('error');
         console.log(err);
+      })
+      .finally(() => {
+        setSearchStatus('results');
       });
+  }
+
+  function handleBookmarkClick(card) {
+    setSavedCards([...savedCards, card]);
   }
 
   React.useEffect(() => {
@@ -108,7 +125,7 @@ function App() {
             onSignOutClock={handleSignOutClick}
           />
           <SavedNewsHeader />
-          <SavedNew />
+          <SavedNews keyword={keyword} onBookmarkClick={handleBookmarkClick} />
           <Footer />
         </Route>
 
@@ -132,6 +149,8 @@ function App() {
               showMoreStatus={showMoreStatus}
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
+              onBookmarkClick={handleBookmarkClick}
+              keyword={keyword}
             />
           )}
           <About />

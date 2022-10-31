@@ -13,11 +13,11 @@ function NewsCard({
 }) {
   const [isSignInButtonVisible, setIsSignInButtonVisible] =
     React.useState(false);
-  const [bookmarkStatus, setBookmarkStatus] = React.useState('not-saved');
+  const [isBookmarked, setIsBookmarked] = React.useState(false);
 
   function handleBookmarkClick() {
     if (isLoggedIn === true) {
-      setBookmarkStatus('saved');
+      setIsBookmarked(true);
     } else {
       setIsSignInButtonVisible(true);
     }
@@ -42,7 +42,11 @@ function NewsCard({
         )}
         <button
           type='button'
-          className='news-card__header__button news-card__header__button-bookmark'
+          className={`news-card__header__button news-card__header__button-bookmark ${
+            isBookmarked === true
+              ? 'news-card__header__button-bookmark_marked'
+              : ''
+          }`}
           aria-label='bookmark article'
           onClick={handleBookmarkClick}
         ></button>

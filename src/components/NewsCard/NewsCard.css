@@ -108,6 +108,14 @@
   width: 40px;
 }
 
+.news-card__header__button-bookmark:hover {
+  background-image: url('../../images/bookmark-hover.svg');
+}
+
+.news-card__header__button-bookmark_marked {
+  background-image: url('../../images/bookmark-marked.svg');
+}
+
 .news-card__header__button-sign-in {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;

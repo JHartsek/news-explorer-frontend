@@ -5,6 +5,8 @@ import React from 'react';
 
 function NewsCardList({
   displayedCards,
+  keyword,
+  onBookmarkClick,
   onShowMoreClick,
   showMoreStatus,
   onSignInClick,
@@ -17,8 +19,9 @@ function NewsCardList({
         {displayedCards.map((card) => {
           return (
             <NewsCard
+              newsCard={card}
               key={card.title}
-              keyword='hi'
+              keyword={keyword}
               date={card.date}
               imageUrl={card.urlToImage}
               title={card.title}
@@ -26,6 +29,7 @@ function NewsCardList({
               source={card.source.name}
               onSignInClick={onSignInClick}
               isLoggedIn={isLoggedIn}
+              onBookmarkClick={onBookmarkClick}
             />
           );
         })}

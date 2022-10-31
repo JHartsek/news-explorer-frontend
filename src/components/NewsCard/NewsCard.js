@@ -2,6 +2,7 @@ import './NewsCard.css';
 import React from 'react';
 
 function NewsCard({
+  newsCard,
   keyword,
   date,
   imageUrl,
@@ -10,12 +11,14 @@ function NewsCard({
   source,
   isLoggedIn,
   onSignInClick,
+  onBookmarkClick,
 }) {
   const [isSignInButtonVisible, setIsSignInButtonVisible] =
     React.useState(false);
   const [isBookmarked, setIsBookmarked] = React.useState(false);
 
-  function handleBookmarkClick() {
+  function onClick() {
+    onBookmarkClick(newsCard);
     if (isLoggedIn === true) {
       setIsBookmarked(true);
     } else {
@@ -48,7 +51,7 @@ function NewsCard({
               : ''
           }`}
           aria-label='bookmark article'
-          onClick={handleBookmarkClick}
+          onClick={onClick}
         ></button>
       </div>
       <div className='news-card__details details'>

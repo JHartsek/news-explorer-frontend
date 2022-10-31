@@ -68,6 +68,10 @@
   border: none;
 }
 
+.search-form__submit:hover {
+  cursor: pointer;
+}
+
 .search-form__submit_disabled {
   background-color: rgba(230, 232, 235, 1);
   color: rgba(182, 188, 191, 1);

@@ -13,7 +13,7 @@ function Header({
     <header className='header'>
       <h1
         className={`header__title ${
-          currentPage === 'saved-news' ? 'header__title_page_saved_news' : ''
+          currentPage === 'saved-news' ? 'header__title_page_saved-news' : ''
         }`}
       >
         NewsExplorer

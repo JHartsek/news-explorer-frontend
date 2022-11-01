@@ -44,10 +44,15 @@ function Header({
           }`}
         ></button>
       ) : (
+        ''
+      )}
+      {(device === 'phone') & (isMenuOpen === true) ? (
         <button
           className='header__menu header__menu-close'
           onClick={onCloseMenu}
         ></button>
+      ) : (
+        ''
       )}
     </header>
   );

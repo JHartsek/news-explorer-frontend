@@ -21,7 +21,7 @@ export const searchForNews = (keyword) => {
   const previousYear = oneWeekAgo.getFullYear();
   const previousMonth = oneWeekAgo.getMonth();
   const previousDate = oneWeekAgo.getDate();
-  const from = `${previousYear}-${previousMonth}-${previousDate}`;
+  const from = `${previousYear}-${previousMonth}-${previousDate-4}`;
 
   return fetch(
     `${baseUrl}?q=${keyword}&apiKey=${apiKey}&from=${from}&to=${to}&pageSize=${pageSize}`

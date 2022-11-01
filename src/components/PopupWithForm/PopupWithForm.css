@@ -13,12 +13,13 @@
 }
 
 @media screen and (max-width: 544px) {
-    .form {
-        width: 320px;
-        border-radius: 16px;
-        padding: 16px 16px 0;
-        height: calc(100vh - 56px)
-      }
+  .form {
+    width: 100vw;
+    box-sizing: border-box;
+    border-radius: 16px;
+    padding: 16px 16px 0;
+    height: calc(100vh - 56px);
+  }
 }
 
 .form__title {
@@ -31,9 +32,9 @@
 }
 
 @media screen and (max-width: 544px) {
-    .form__title {
-        padding-bottom: 18px;
-      }
+  .form__title {
+    padding-bottom: 18px;
+  }
 }
 
 .form__label {
@@ -75,9 +76,9 @@
 }
 
 @media screen and (max-width: 544px) {
-    .form__save-button {
-        margin: 0 0 16px;
-      }
+  .form__save-button {
+    margin: 0 0 16px;
+  }
 }
 
 .form__save-button_disabled {

@@ -1,11 +1,15 @@
 .nav {
   display: flex;
-  column-gap: 76px;
+  column-gap: 42px;
   align-items: center;
   font-family: 'Roboto', serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 1.33;
+}
+
+.nav_page_saved_news {
+  column-gap: 76px;
 }
 
 @media screen and (max-width: 900px) {

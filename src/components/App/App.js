@@ -26,7 +26,7 @@ function App() {
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [searchStatus, setSearchStatus] = React.useState('defualt');
+  const [searchStatus, setSearchStatus] = React.useState('default');
   const [keyword, setKeyword] = React.useState('');
   const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
   const [newsCards, setNewsCards] = React.useState([]);

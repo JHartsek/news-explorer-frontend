@@ -5,7 +5,6 @@ import logoutIconBlack from '../../images/logout-black.svg';
 function Navigation({
   currentPage,
   isLoggedIn,
-  device,
   onSignInClick,
   onSignOutClick,
 }) {

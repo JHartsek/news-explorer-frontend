@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Header from '../Header/Header';
+import Menu from '../Menu/Menu';
 import Main from '../Main/Main';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import About from '../About/About';
@@ -24,6 +25,7 @@ function App() {
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [searchStatus, setSearchStatus] = React.useState('defualt');
   const [keyword, setKeyword] = React.useState('');
   const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
@@ -50,6 +52,10 @@ function App() {
   function closeAllPopups() {
     setIsSignUpFormOpen(false);
     setIsSignInFormOpen(false);
+  }
+
+  function closeMenu() {
+    setIsMenuOpen(false);
   }
 
   function handleSignInClick() {
@@ -95,6 +101,10 @@ function App() {
       });
   }
 
+  function handleMenuClick() {
+    setIsMenuOpen(true);
+  }
+
   function handleBookmarkClick(card) {
     setSavedCards([...savedCards, card]);
   }
@@ -118,12 +128,16 @@ function App() {
       <Switch>
         <Route path='/saved-news'>
           <Header
-            currentPage={currentPage}
+            currentPage={'saved-news'}
             isLoggedIn={isLoggedIn}
             device={device}
+            isMenuOpen={isMenuOpen}
+            onMenuClick={handleMenuClick}
+            onCloseMenu={closeMenu}
             onSignInClick={handleSignInClick}
             onSignOutClock={handleSignOutClick}
           />
+          {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
           <SavedNewsHeader />
           <SavedNews keyword={keyword} onBookmarkClick={handleBookmarkClick} />
           <Footer />
@@ -134,9 +148,13 @@ function App() {
             currentPage={currentPage}
             isLoggedIn={isLoggedIn}
             device={device}
+            isMenuOpen={isMenuOpen}
+            onMenuClick={handleMenuClick}
+            onCloseMenu={closeMenu}
             onSignInClick={handleSignInClick}
             onSignOutClock={handleSignOutClick}
           />
+          {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
           <Main onSearchSubmit={handleSearch} />
           {searchStatus === 'loading' && <Preloader />}
           {(searchStatus === 'no-results' || searchStatus === 'error') && (

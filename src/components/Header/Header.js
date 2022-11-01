@@ -6,25 +6,49 @@ function Header({
   currentPage,
   isLoggedIn,
   device,
+  isMenuOpen,
+  onCloseMenu,
+  onMenuClick,
   onSignInClick,
   onSignOutClick,
 }) {
   return (
-    <header className='header'>
+    <header
+      className={`header ${isMenuOpen === true ? 'header_menu-open' : ''}`}
+    >
       <h1
         className={`header__title ${
-          currentPage === 'saved-news' ? 'header__title_page_saved-news' : ''
+          (currentPage === 'saved-news') & (isMenuOpen === false)
+            ? 'header__title_page_saved-news'
+            : ''
         }`}
       >
         NewsExplorer
       </h1>
-      <Navigation
-        currentPage={currentPage}
-        isLoggedIn={isLoggedIn}
-        device={device}
-        onSignInClick={onSignInClick}
-        onSignOutClock={onSignOutClick}
-      />
+      {device === 'computer' && (
+        <Navigation
+          currentPage={currentPage}
+          isLoggedIn={isLoggedIn}
+          device={device}
+          onSignInClick={onSignInClick}
+          onSignOutClock={onSignOutClick}
+        />
+      )}
+      {(device === 'phone') & (isMenuOpen === false) ? (
+        <button
+          onClick={onMenuClick}
+          className={`header__menu ${
+            currentPage === 'home'
+              ? 'header__menu_color_white'
+              : 'header__menu_color_black'
+          }`}
+        ></button>
+      ) : (
+        <button
+          className='header__menu header__menu-close'
+          onClick={onCloseMenu}
+        ></button>
+      )}
     </header>
   );
 }

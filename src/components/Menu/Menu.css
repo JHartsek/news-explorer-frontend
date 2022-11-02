@@ -9,7 +9,7 @@
   flex-direction: column;
   row-gap: 22px;
   align-items: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 3.11;
@@ -24,7 +24,7 @@
 }
 
 .menu__button {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 500;
   width: calc(100vw - 32px);

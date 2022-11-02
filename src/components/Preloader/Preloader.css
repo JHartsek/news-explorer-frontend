@@ -44,7 +44,7 @@
 
 .preloader__text {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.33;

@@ -32,7 +32,7 @@
 
 .header__title {
   margin: 0;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto Slab', Courier, serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 1.2;

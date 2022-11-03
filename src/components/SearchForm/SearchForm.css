@@ -70,6 +70,11 @@
 
 .search-form__submit:hover {
   cursor: pointer;
+  background-color: rgba(52, 126, 255, 1);
+}
+
+.search-form__submit:active {
+  background-color: rgba(42, 101, 204, 1);
 }
 
 .search-form__submit_disabled {

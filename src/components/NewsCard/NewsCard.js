@@ -17,12 +17,18 @@ function NewsCard({
     React.useState(false);
   const [isBookmarked, setIsBookmarked] = React.useState(false);
 
+  function onMouseEnter() {
+    if (isLoggedIn === false) setIsSignInButtonVisible(true);
+  }
+
+  function onMouseLeave() {
+    if (isLoggedIn === false) setIsSignInButtonVisible(false);
+  }
+
   function onClick() {
     onBookmarkClick(newsCard);
     if (isLoggedIn === true) {
       setIsBookmarked(true);
-    } else {
-      setIsSignInButtonVisible(true);
     }
   }
 
@@ -52,6 +58,8 @@ function NewsCard({
           }`}
           aria-label='bookmark article'
           onClick={onClick}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         ></button>
       </div>
       <div className='news-card__details details'>

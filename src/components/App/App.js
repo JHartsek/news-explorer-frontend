@@ -26,6 +26,8 @@ function App() {
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isRegistrationSuccessOpen, setIsRegistrationSuccessOpen] =
+    React.useState(false);
   const [searchStatus, setSearchStatus] = React.useState('default');
   const [keyword, setKeyword] = React.useState('');
   const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
@@ -54,6 +56,7 @@ function App() {
   function closeAllPopups() {
     setIsSignUpFormOpen(false);
     setIsSignInFormOpen(false);
+    setIsRegistrationSuccessOpen(false);
   }
 
   function closeMenu() {
@@ -62,6 +65,7 @@ function App() {
 
   function handleSignInClick() {
     setIsSignUpFormOpen(false);
+    setIsRegistrationSuccessOpen(false);
     setIsSignInFormOpen(true);
   }
 
@@ -73,6 +77,11 @@ function App() {
   function handleSignUpClick() {
     setIsSignInFormOpen(false);
     setIsSignUpFormOpen(true);
+  }
+
+  function handleSignUpSubmit() {
+    setIsRegistrationSuccessOpen(true);
+    setIsSignUpFormOpen(false);
   }
 
   React.useEffect(() => {
@@ -180,14 +189,15 @@ function App() {
             isOpen={isSignUpFormOpen}
             onClose={closeAllPopups}
             onLinkClick={handleSignInClick}
+            onSignUp={handleSignUpSubmit}
           />
           <SignInForm
             isOpen={isSignInFormOpen}
             onClose={closeAllPopups}
             onLinkClick={handleSignUpClick}
           />
-          <Popup>
-            <RegistrationSuccess />
+          <Popup isOpen={isRegistrationSuccessOpen} onClose={closeAllPopups}>
+            <RegistrationSuccess onLinkClick={handleSignInClick} />
           </Popup>
         </Route>
       </Switch>

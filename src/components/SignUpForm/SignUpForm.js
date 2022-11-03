@@ -1,11 +1,11 @@
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { useFormValidation } from '../../hooks/useFormValidation';
 
-function SignUpForm({ isOpen, onClose, onLinkClick }) {
+function SignUpForm({ isOpen, onClose, onLinkClick, onSignUp }) {
   const { inputValues, handleChange, errors, isValid } = useFormValidation();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form submitted');
+    onSignUp();
   };
 
   return (
@@ -48,7 +48,7 @@ function SignUpForm({ isOpen, onClose, onLinkClick }) {
         id='password'
         name='password'
         className='form__input'
-        type='text'
+        type='password'
         placeholder='Enter password'
         value={inputValues.password || ''}
         onChange={handleChange}

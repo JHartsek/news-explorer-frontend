@@ -40,6 +40,9 @@
   padding: 0 0 50px 36px;
   color: rgba(47, 113, 229, 1);
   text-decoration: none;
+  background-color: transparent;
+  border: none;
+  text-align: left;
 }
 
 @media screen and (max-width: 544px) {

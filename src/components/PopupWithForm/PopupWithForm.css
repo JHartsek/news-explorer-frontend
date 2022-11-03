@@ -49,10 +49,6 @@
   padding-bottom: 10px;
 }
 
-.form__input:focus {
-  outline: none;
-}
-
 .form__input::placeholder {
   color: rgba(0, 0, 0, 0.2);
 }

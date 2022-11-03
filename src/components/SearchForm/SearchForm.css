@@ -39,7 +39,6 @@
 }
 
 .search-form__input:focus {
-  outline: none;
   background-color: #fff;
 }
 

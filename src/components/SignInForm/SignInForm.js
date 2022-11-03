@@ -48,7 +48,7 @@ function SignInForm({ isOpen, onClose, onLinkClick }) {
         id='password'
         name='password'
         className='form__input'
-        type='text'
+        type='password'
         placeholder='Enter password'
         value={inputValues.password || ''}
         onChange={handleChange}

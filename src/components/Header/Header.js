@@ -16,7 +16,7 @@ function Header({
 }) {
   return (
     <header
-      className={`header ${isMenuOpen === true ? 'header_menu-open' : ''} ${
+      className={`header ${isMenuOpen === true ? 'header_menu_open' : ''} ${
         currentPage === 'saved-news' ? 'header_page_saved-news' : ''
       }`}
     >
@@ -54,7 +54,7 @@ function Header({
       )}
       {(device === 'phone') & (isMenuOpen === true) ? (
         <button
-          className='header__menu header__menu-close'
+          className='header__menu header__menu_closed'
           onClick={onCloseMenu}
         ></button>
       ) : (

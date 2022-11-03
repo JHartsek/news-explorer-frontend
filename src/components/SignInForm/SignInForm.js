@@ -36,7 +36,7 @@ function SignInForm({ isOpen, onClose, onLinkClick }) {
         minLength='2'
         maxLength='40'
       />
-      <span className='form__input-error name-input-error form__input-error_active'>
+      <span className='form__input-error name_input-error form__input-error_active'>
         {' '}
         {`${errors.email ?? ''}`}
       </span>
@@ -56,7 +56,7 @@ function SignInForm({ isOpen, onClose, onLinkClick }) {
         minLength='2'
         maxLength='40'
       />
-      <span className='form__input-error about-input-error'>
+      <span className='form__input-error aboutinput-error'>
         {`${errors.password ?? ''}`}
       </span>
     </PopupWithForm>

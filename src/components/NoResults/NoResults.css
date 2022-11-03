@@ -8,10 +8,6 @@
   align-items: center;
 }
 
-.no-results_visible {
-  display: flex;
-}
-
 @media screen and (max-width: 544px) {
   .no-results {
     height: 400px;

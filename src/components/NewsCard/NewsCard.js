@@ -53,9 +53,9 @@ function NewsCard({
         {currentPage === 'home' ? (
           <button
             type='button'
-            className={`news-card__header__button news-card__header__button-bookmark ${
+            className={`news-card__header__button news-card__header__button_bookmark ${
               isBookmarked === true
-                ? 'news-card__header__button-bookmark_marked'
+                ? 'news-card__header__button_bookmark_status_marked'
                 : ''
             }`}
             aria-label='bookmark article'

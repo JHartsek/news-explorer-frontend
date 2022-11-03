@@ -16,7 +16,7 @@
   border-color: rgba(26, 27, 34, 0.15);
 }
 
-.header_menu-open {
+.header_menu_open {
   background-color: rgba(26, 27, 34, 1);
 }
 
@@ -72,6 +72,6 @@
   background-image: url('../../images/menu-black.svg');
 }
 
-.header__menu-close {
+.header__menu_closed {
   background-image: url('../../images/close.svg');
 }

@@ -20,7 +20,9 @@ import SignInForm from '../SignInForm/SignInForm';
 import { searchForNews } from '../../utils/NewsApi';
 
 function App() {
-  const [currentPage, setCurrentPage] = React.useState('home');
+  const [currentPage, setCurrentPage] = React.useState(
+    localStorage.getItem('currentPage')
+  );
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
@@ -100,6 +102,10 @@ function App() {
   React.useEffect(() => {
     localStorage.setItem('displayedCards', JSON.stringify(displayedCards));
   }, [displayedCards, displayedCardCount]);
+
+  React.useEffect(() => {
+    localStorage.setItem('currentPage', currentPage);
+  }, [currentPage]);
 
   function handleSearch(keyword) {
     setSearchStatus('loading');

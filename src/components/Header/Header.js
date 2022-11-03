@@ -16,7 +16,7 @@ function Header({
     <header
       className={`header ${isMenuOpen === true ? 'header_menu-open' : ''}`}
     >
-      <h1
+      <h3
         className={`header__title ${
           (currentPage === 'saved-news') & (isMenuOpen === false)
             ? 'header__title_page_saved-news'
@@ -24,7 +24,7 @@ function Header({
         }`}
       >
         NewsExplorer
-      </h1>
+      </h3>
       {device === 'computer' && (
         <Navigation
           currentPage={currentPage}

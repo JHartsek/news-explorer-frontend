@@ -2,12 +2,16 @@ import { Link } from 'react-router-dom';
 import './RegistrationSuccess.css';
 
 function RegistrationSuccess() {
-    return(
-        <article className='registration-success'>
-            <h1 className='registration-success__title'>Registration successfully completed!</h1>
-            <Link className='registration-success__link' to='/'>Sign in</Link>
-        </article>
-    )
+  return (
+    <section className='registration-success'>
+      <h2 className='registration-success__title'>
+        Registration successfully completed!
+      </h2>
+      <Link className='registration-success__link' to='/'>
+        Sign in
+      </Link>
+    </section>
+  );
 }
 
 export default RegistrationSuccess;

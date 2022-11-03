@@ -1,12 +1,12 @@
 import './Preloader.css';
 
 function Preloader() {
-    return (
+  return (
     <section className='preloader'>
-        <i className='preloader__circe'></i>
-        <h1 className='preloader__text'>Searching for news...</h1>
+      <i className='preloader__circe'></i>
+      <h2 className='preloader__text'>Searching for news...</h2>
     </section>
-    )
+  );
 }
 
 export default Preloader;

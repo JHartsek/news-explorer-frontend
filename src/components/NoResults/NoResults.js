@@ -14,7 +14,7 @@ function NoResults({ searchStatus }) {
         src={noResultsIcon}
         alt='sad magnifier icon'
       />
-      <h1 className='no-results__title'>Nothing found</h1>
+      <h2 className='no-results__title'>Nothing found</h2>
       <p className='no-results__details'>
         {searchStatus === 'no-results' ? noMatches : error}
       </p>

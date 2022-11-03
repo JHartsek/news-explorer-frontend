@@ -9,24 +9,32 @@ function Footer() {
       <p className='footer__copywrite'>
         © {new Date().getFullYear()} Supersite, Powered by News API
       </p>
-      <div className='footer__nav'>
-        <div className='footer__nav__text'> 
-            <a className='footer__nav__text__link' href='/'>
-            Home
+      <nav className='footer__nav nav'>
+        <ul className='nav__text text'>
+          <li className='text__link'>
+            <a className='text__link' href='/'>
+              Home
             </a>
-            <a className='footer__nav__text__link' href='/'>
-            Practicum
+          </li>
+          <li className='text__link'>
+            <a className='text__link' href='/'>
+              Practicum
             </a>
-        </div>
-        <div className='footer__nav__icons'>
-            <a className='footer__nav__icons__link' href='/'>
-            <img src={facebook} alt='facebook logo' />
+          </li>
+        </ul>
+        <ul className='nav__icons icons'>
+          <li className='icons__link'>
+            <a className='icons__link' href='/'>
+              <img src={facebook} alt='facebook logo' />
             </a>
-            <a className='footer__nav__icons__link' href='/'>
-            <img src={gitHub} alt='github logo' />
+          </li>
+          <li className='icons__link'>
+            <a className='icons__link' href='/'>
+              <img src={gitHub} alt='github logo' />
             </a>
-        </div>
-      </div>
+          </li>
+        </ul>
+      </nav>
     </footer>
   );
 }

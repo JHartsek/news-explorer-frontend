@@ -10,6 +10,7 @@ function NewsCard({
   description,
   source,
   isLoggedIn,
+  currentPage,
   onSignInClick,
   onBookmarkClick,
 }) {
@@ -49,18 +50,28 @@ function NewsCard({
             Sign in to save articles
           </button>
         )}
-        <button
-          type='button'
-          className={`news-card__header__button news-card__header__button-bookmark ${
-            isBookmarked === true
-              ? 'news-card__header__button-bookmark_marked'
-              : ''
-          }`}
-          aria-label='bookmark article'
-          onClick={onClick}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-        ></button>
+        {currentPage === 'home' ? (
+          <button
+            type='button'
+            className={`news-card__header__button news-card__header__button-bookmark ${
+              isBookmarked === true
+                ? 'news-card__header__button-bookmark_marked'
+                : ''
+            }`}
+            aria-label='bookmark article'
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          ></button>
+        ) : (
+          <button
+            type='button'
+            className='news-card__header__button news-card__header__button-delete'
+            aria-label='delete article'
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          ></button>
+        )}
       </div>
       <div className='news-card__details details'>
         <h5 className='deails__date'>{date}</h5>

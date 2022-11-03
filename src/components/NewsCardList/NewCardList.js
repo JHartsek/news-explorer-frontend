@@ -11,6 +11,7 @@ function NewsCardList({
   showMoreStatus,
   onSignInClick,
   isLoggedIn,
+  currentPage,
 }) {
   return (
     <section className='news-card-list'>
@@ -30,6 +31,7 @@ function NewsCardList({
               onSignInClick={onSignInClick}
               isLoggedIn={isLoggedIn}
               onBookmarkClick={onBookmarkClick}
+              currentPage={currentPage}
             />
           );
         })}

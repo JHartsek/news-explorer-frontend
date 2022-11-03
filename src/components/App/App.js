@@ -163,7 +163,11 @@ function App() {
           />
           {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
           <SavedNewsHeader />
-          <SavedNews keyword={keyword} onBookmarkClick={handleBookmarkClick} />
+          <SavedNews
+            keyword={keyword}
+            onBookmarkClick={handleBookmarkClick}
+            currentPage={currentPage}
+          />
           <Footer />
         </Route>
 
@@ -192,6 +196,7 @@ function App() {
               onShowMoreClick={showMoreCards}
               showMoreStatus={showMoreStatus}
               isLoggedIn={isLoggedIn}
+              currentPage={currentPage}
               onSignInClick={handleSignInClick}
               onBookmarkClick={handleBookmarkClick}
               keyword={keyword}

@@ -21,7 +21,7 @@ import { searchForNews } from '../../utils/NewsApi';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
@@ -61,6 +61,16 @@ function App() {
 
   function closeMenu() {
     setIsMenuOpen(false);
+  }
+
+  function handleHomeClick() {
+    setCurrentPage('home');
+    history.push('/');
+  }
+
+  function handleSavedArticlesClick() {
+    setCurrentPage('saved-news');
+    history.push('/saved-news');
   }
 
   function handleSignInClick() {
@@ -140,12 +150,14 @@ function App() {
       <Switch>
         <Route path='/saved-news'>
           <Header
-            currentPage={'saved-news'}
+            currentPage={currentPage}
             isLoggedIn={isLoggedIn}
             device={device}
             isMenuOpen={isMenuOpen}
             onMenuClick={handleMenuClick}
             onCloseMenu={closeMenu}
+            onHomeClick={handleHomeClick}
+            onSavedArticlesClick={handleSavedArticlesClick}
             onSignInClick={handleSignInClick}
             onSignOutClick={handleSignOutClick}
           />
@@ -163,6 +175,8 @@ function App() {
             isMenuOpen={isMenuOpen}
             onMenuClick={handleMenuClick}
             onCloseMenu={closeMenu}
+            onHomeClick={handleHomeClick}
+            onSavedArticlesClick={handleSavedArticlesClick}
             onSignInClick={handleSignInClick}
             onSignOutClick={handleSignOutClick}
           />

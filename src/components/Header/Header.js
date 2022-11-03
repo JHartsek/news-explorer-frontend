@@ -9,12 +9,16 @@ function Header({
   isMenuOpen,
   onCloseMenu,
   onMenuClick,
+  onHomeClick,
+  onSavedArticlesClick,
   onSignInClick,
   onSignOutClick,
 }) {
   return (
     <header
-      className={`header ${isMenuOpen === true ? 'header_menu-open' : ''}`}
+      className={`header ${isMenuOpen === true ? 'header_menu-open' : ''} ${
+        currentPage === 'saved-news' ? 'header_page_saved-news' : ''
+      }`}
     >
       <h3
         className={`header__title ${
@@ -30,6 +34,8 @@ function Header({
           currentPage={currentPage}
           isLoggedIn={isLoggedIn}
           device={device}
+          onHomeClick={onHomeClick}
+          onSavedArticlesClick={onSavedArticlesClick}
           onSignInClick={onSignInClick}
           onSignOutClick={onSignOutClick}
         />

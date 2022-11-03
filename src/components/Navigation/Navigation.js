@@ -5,34 +5,42 @@ import logoutIconBlack from '../../images/logout-black.svg';
 function Navigation({
   currentPage,
   isLoggedIn,
+  onHomeClick,
+  onSavedArticlesClick,
   onSignInClick,
   onSignOutClick,
 }) {
   return (
     <nav className='nav'>
-      <a
+      <button
         href='/'
+        onClick={onHomeClick}
         className={`nav__link ${
-          currentPage === 'saved-news' ? 'nav__link_page_saved_news' : ''
+          currentPage === 'saved-news'
+            ? 'nav__link_page_saved-news'
+            : 'nav_option_selected'
         }`}
       >
         Home
-      </a>
+      </button>
       {isLoggedIn === true && (
-        <a
+        <button
           href='/saved-news'
+          onClick={onSavedArticlesClick}
           className={`nav__link ${
-            currentPage === 'saved-news' ? 'nav__link_page_saved_news' : ''
+            currentPage === 'saved-news'
+              ? 'nav__link_page_saved-news nav_option_selected_page_saved-news'
+              : ''
           }`}
         >
           Saved articles
-        </a>
+        </button>
       )}
       {isLoggedIn === true && (
         <button
           onClick={onSignOutClick}
           className={`nav__button ${
-            currentPage === 'saved-news' ? 'nav__button_page_saved_news' : ''
+            currentPage === 'saved-news' ? 'nav__button_page_saved-news' : ''
           }`}
         >
           Elise

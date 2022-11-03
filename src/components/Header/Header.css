@@ -12,6 +12,10 @@
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
+.header_page_saved-news {
+  border-color: rgba(26, 27, 34, 0.15);
+}
+
 .header_menu-open {
   background-color: rgba(26, 27, 34, 1);
 }

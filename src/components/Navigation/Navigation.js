@@ -39,13 +39,13 @@ function Navigation({
       {isLoggedIn === true && (
         <button
           onClick={onSignOutClick}
-          className={`nav__button ${
+          className={`nav__button button ${
             currentPage === 'saved-news' ? 'nav__button_page_saved-news' : ''
           }`}
         >
           Elise
           <img
-            className='nav__button__icon'
+            className='button__icon'
             src={
               currentPage === 'saved-news' ? logoutIconBlack : logoutIconWhite
             }

@@ -21,10 +21,6 @@
   }
 }
 
-.preloader__visible {
-  display: flex;
-}
-
 .preloader__circe {
   display: block;
   width: 74px;

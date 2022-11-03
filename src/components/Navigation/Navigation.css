@@ -67,14 +67,14 @@
   border-color: rgba(26, 27, 34, 1);
 }
 
-.nav__button__icon {
+.button__icon {
   height: 16px;
   width: 18px;
   padding-left: 20px;
 }
 
 @media screen and (max-width: 900px) {
-  .nav__button__icon {
+  .button__icon {
     padding-left: 17px;
   }
 }

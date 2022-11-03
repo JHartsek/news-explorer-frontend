@@ -51,8 +51,11 @@ function App() {
   function getScreenWidth() {
     if (window.innerWidth <= 525) {
       setDevice('phone');
+    } else {
+      setDevice('computer');
     }
   }
+
   function closeAllPopups() {
     setIsSignUpFormOpen(false);
     setIsSignInFormOpen(false);
@@ -132,8 +135,6 @@ function App() {
   }
 
   React.useEffect(() => {
-    getScreenWidth();
-
     const closeByEsc = (e) => {
       if (e.key === 'Escape') {
         closeAllPopups();
@@ -143,6 +144,13 @@ function App() {
     document.addEventListener('keydown', closeByEsc);
 
     return document.addEventListener('keypress', closeByEsc);
+  }, []);
+
+  React.useEffect(() => {
+    getScreenWidth();
+    window.addEventListener('resize', getScreenWidth);
+
+    return window.addEventListener('resize', getScreenWidth);
   }, []);
 
   return (

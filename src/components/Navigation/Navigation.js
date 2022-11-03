@@ -20,7 +20,7 @@ function Navigation({
       </a>
       {isLoggedIn === true && (
         <a
-          href='/'
+          href='/saved-news'
           className={`nav__link ${
             currentPage === 'saved-news' ? 'nav__link_page_saved_news' : ''
           }`}

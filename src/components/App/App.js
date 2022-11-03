@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 
 import Header from '../Header/Header';
@@ -36,6 +36,8 @@ function App() {
   );
   const [savedCards, setSavedCards] = React.useState([]);
 
+  const history = useHistory();
+
   function showMoreCards() {
     setDisplayedCards(newsCards.slice(0, displayedCardCount + 3));
     setDisplayedCardCount(displayedCardCount + 3);
@@ -65,6 +67,7 @@ function App() {
 
   function handleSignOutClick() {
     setIsLoggedIn(false);
+    history.push('/');
   }
 
   function handleSignUpClick() {
@@ -135,7 +138,7 @@ function App() {
             onMenuClick={handleMenuClick}
             onCloseMenu={closeMenu}
             onSignInClick={handleSignInClick}
-            onSignOutClock={handleSignOutClick}
+            onSignOutClick={handleSignOutClick}
           />
           {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
           <SavedNewsHeader />
@@ -152,7 +155,7 @@ function App() {
             onMenuClick={handleMenuClick}
             onCloseMenu={closeMenu}
             onSignInClick={handleSignInClick}
-            onSignOutClock={handleSignOutClick}
+            onSignOutClick={handleSignOutClick}
           />
           {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
           <Main onSearchSubmit={handleSearch} />

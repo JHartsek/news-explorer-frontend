@@ -31,7 +31,7 @@ function Header({
           isLoggedIn={isLoggedIn}
           device={device}
           onSignInClick={onSignInClick}
-          onSignOutClock={onSignOutClick}
+          onSignOutClick={onSignOutClick}
         />
       )}
       {(device === 'phone') & (isMenuOpen === false) ? (

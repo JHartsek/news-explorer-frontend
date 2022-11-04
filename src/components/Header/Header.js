@@ -17,12 +17,12 @@ function Header({
   return (
     <header
       className={`header ${isMenuOpen === true ? 'header_menu_open' : ''} ${
-        currentPage === 'saved-news' ? 'header_page_saved-news' : ''
+        currentPage === '/saved-news' ? 'header_page_saved-news' : ''
       }`}
     >
       <h3
         className={`header__title ${
-          (currentPage === 'saved-news') & (isMenuOpen === false)
+          (currentPage === '/saved-news') & (isMenuOpen === false)
             ? 'header__title_page_saved-news'
             : ''
         }`}
@@ -44,7 +44,7 @@ function Header({
         <button
           onClick={onMenuClick}
           className={`header__menu ${
-            currentPage === 'home'
+            currentPage === '/'
               ? 'header__menu_color_white'
               : 'header__menu_color_black'
           }`}

@@ -69,7 +69,7 @@ function NewsCard({
             Remove from saved
           </button>
         )}
-        {currentPage === 'home' ? (
+        {currentPage === '/' ? (
           <button
             type='button'
             className={`news-card__header__button news-card__header__button_bookmark ${

@@ -16,7 +16,7 @@ function Navigation({
         href='/'
         onClick={onHomeClick}
         className={`nav__link ${
-          currentPage === 'saved-news'
+          currentPage === '/saved-news'
             ? 'nav__link_page_saved-news'
             : 'nav_option_selected'
         }`}
@@ -28,7 +28,7 @@ function Navigation({
           href='/saved-news'
           onClick={onSavedArticlesClick}
           className={`nav__link ${
-            currentPage === 'saved-news'
+            currentPage === '/saved-news'
               ? 'nav__link_page_saved-news nav_option_selected_page_saved-news'
               : ''
           }`}
@@ -40,14 +40,14 @@ function Navigation({
         <button
           onClick={onSignOutClick}
           className={`nav__button button ${
-            currentPage === 'saved-news' ? 'nav__button_page_saved-news' : ''
+            currentPage === '/saved-news' ? 'nav__button_page_saved-news' : ''
           }`}
         >
           Elise
           <img
             className='button__icon'
             src={
-              currentPage === 'saved-news' ? logoutIconBlack : logoutIconWhite
+              currentPage === '/saved-news' ? logoutIconBlack : logoutIconWhite
             }
             alt='logout icon'
           />

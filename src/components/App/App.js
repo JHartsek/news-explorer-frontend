@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import './App.css';
 
 import Header from '../Header/Header';
@@ -21,7 +21,7 @@ import { searchForNews } from '../../utils/NewsApi';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState(
-    localStorage.getItem('currentPage')
+    localStorage.getItem('')
   );
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [device, setDevice] = React.useState('computer');
@@ -41,6 +41,7 @@ function App() {
   const [savedCards, setSavedCards] = React.useState([]);
 
   const history = useHistory();
+  const location = useLocation();
 
   function showMoreCards() {
     setDisplayedCards(newsCards.slice(0, displayedCardCount + 3));
@@ -69,12 +70,12 @@ function App() {
   }
 
   function handleHomeClick() {
-    setCurrentPage('home');
+    setCurrentPage('/');
     history.push('/');
   }
 
   function handleSavedArticlesClick() {
-    setCurrentPage('saved-news');
+    setCurrentPage('/saved-news');
     history.push('/saved-news');
   }
 
@@ -104,8 +105,9 @@ function App() {
   }, [displayedCards, displayedCardCount]);
 
   React.useEffect(() => {
+    setCurrentPage(location.pathname);
     localStorage.setItem('currentPage', currentPage);
-  }, [currentPage]);
+  }, [location.pathname, currentPage]);
 
   function handleSearch(keyword) {
     setSearchStatus('loading');

@@ -17,13 +17,23 @@ function NewsCard({
   const [isSignInButtonVisible, setIsSignInButtonVisible] =
     React.useState(false);
   const [isBookmarked, setIsBookmarked] = React.useState(false);
+  const [isRemoveButtonVisible, setIsRemoveButtonVisible] =
+    React.useState(false);
 
-  function onMouseEnter() {
-    if (isLoggedIn === false) setIsSignInButtonVisible(true);
+  function onBookmarkMouseEnter() {
+    setIsSignInButtonVisible(true);
   }
 
-  function onMouseLeave() {
-    if (isLoggedIn === false) setIsSignInButtonVisible(false);
+  function onBookmarkMouseLeave() {
+    setIsSignInButtonVisible(false);
+  }
+
+  function onDeleteMouseEnter() {
+    setIsRemoveButtonVisible(true);
+  }
+
+  function onDeleteMouseLeave() {
+    setIsRemoveButtonVisible(false);
   }
 
   function onClick() {
@@ -50,6 +60,15 @@ function NewsCard({
             Sign in to save articles
           </button>
         )}
+        {isRemoveButtonVisible === true && (
+          <button
+            type='button'
+            className='news-card__header__button news-card__header__button-remove'
+            aria-label='remove-article'
+          >
+            Remove from saved
+          </button>
+        )}
         {currentPage === 'home' ? (
           <button
             type='button'
@@ -60,16 +79,16 @@ function NewsCard({
             }`}
             aria-label='bookmark article'
             onClick={onClick}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
+            onMouseEnter={onBookmarkMouseEnter}
+            onMouseLeave={onBookmarkMouseLeave}
           ></button>
         ) : (
           <button
             type='button'
             className='news-card__header__button news-card__header__button-delete'
             aria-label='delete article'
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
+            onMouseEnter={onDeleteMouseEnter}
+            onMouseLeave={onDeleteMouseLeave}
           ></button>
         )}
       </div>

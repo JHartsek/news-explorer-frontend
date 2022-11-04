@@ -21,7 +21,7 @@ function SearchForm({ onSearchSubmit }) {
       />
       <button
         className={`search-form__submit ${
-          !isValid ? 'search-form__submit_status_disabled' : ''
+          !isValid ? 'search-form__submit_disabled' : ''
         }`}
         type='submit'
       >

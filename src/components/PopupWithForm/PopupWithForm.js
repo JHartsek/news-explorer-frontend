@@ -35,7 +35,7 @@ function PopupWithForm({
           <button
             type='submit'
             className={`form__save-button ${
-              !isValid ? 'form__save-button_status_disabled' : ''
+              !isValid ? 'form__save-button_disabled' : ''
             }`}
           >
             {buttonText}

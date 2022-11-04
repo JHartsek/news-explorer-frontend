@@ -74,7 +74,7 @@ function NewsCard({
             type='button'
             className={`news-card__header__button news-card__header__button_bookmark ${
               isBookmarked === true
-                ? 'news-card__header__button_bookmark_status_marked'
+                ? 'news-card__header__button_bookmark_marked'
                 : ''
             }`}
             aria-label='bookmark article'

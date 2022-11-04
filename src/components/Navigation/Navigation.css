@@ -79,25 +79,25 @@
   }
 }
 
-.nav_option_selected {
+.nav__link_selected {
   padding: 27px 0;
   border-bottom: 3px solid #fff;
 }
 
 @media screen and (max-width: 900px) {
-  .nav_option_selected {
+  .nav__link_selected {
     padding: 20px 0;
   }
 }
 
-.nav_option_selected_page_saved-news {
+.nav__link_selected_page_saved-news {
   padding: 27px 0;
   border-bottom: 3px solid black;
   width: 175px;
 }
 
 @media screen and (max-width: 900px) {
-  .nav_option_selected_page_saved-news {
+  .nav__link_selected_page_saved-news {
     padding: 20px 0;
     width: 160px;
   }

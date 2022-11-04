@@ -18,7 +18,7 @@ function Navigation({
         className={`nav__link ${
           currentPage === '/saved-news'
             ? 'nav__link_page_saved-news'
-            : 'nav_option_selected'
+            : 'nav__link_selected'
         }`}
       >
         Home
@@ -29,7 +29,7 @@ function Navigation({
           onClick={onSavedArticlesClick}
           className={`nav__link ${
             currentPage === '/saved-news'
-              ? 'nav__link_page_saved-news nav_option_selected_page_saved-news'
+              ? 'nav__link_page_saved-news nav__link_selected_page_saved-news'
               : ''
           }`}
         >

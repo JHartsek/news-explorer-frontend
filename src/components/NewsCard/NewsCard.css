@@ -112,7 +112,7 @@
   background-image: url('../../images/bookmark-hover.svg');
 }
 
-.news-card__header__button_bookmark_status_marked {
+.news-card__header__button_bookmark_marked {
   background-image: url('../../images/bookmark-marked.svg');
 }
 

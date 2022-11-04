@@ -11,14 +11,14 @@ function Navigation({
   onSignOutClick,
 }) {
   return (
-    <nav className='nav'>
+    <nav className='navigation'>
       <button
         href='/'
         onClick={onHomeClick}
-        className={`nav__link ${
+        className={`navigation__link ${
           currentPage === '/saved-news'
-            ? 'nav__link_page_saved-news'
-            : 'nav__link_selected'
+            ? 'navigation__link_page_saved-news'
+            : 'navigation__link_selected'
         }`}
       >
         Home
@@ -27,9 +27,9 @@ function Navigation({
         <button
           href='/saved-news'
           onClick={onSavedArticlesClick}
-          className={`nav__link ${
+          className={`navigation__link ${
             currentPage === '/saved-news'
-              ? 'nav__link_page_saved-news nav__link_selected_page_saved-news'
+              ? 'navigation__link_page_saved-news navigation__link_selected_page_saved-news'
               : ''
           }`}
         >
@@ -39,8 +39,10 @@ function Navigation({
       {isLoggedIn === true && (
         <button
           onClick={onSignOutClick}
-          className={`nav__button button ${
-            currentPage === '/saved-news' ? 'nav__button_page_saved-news' : ''
+          className={`navigation__button button ${
+            currentPage === '/saved-news'
+              ? 'navigation__button_page_saved-news'
+              : ''
           }`}
         >
           Elise
@@ -54,7 +56,7 @@ function Navigation({
         </button>
       )}
       {isLoggedIn === false && (
-        <button onClick={onSignInClick} className='nav__button'>
+        <button onClick={onSignInClick} className='navigation__button'>
           Sign In
         </button>
       )}

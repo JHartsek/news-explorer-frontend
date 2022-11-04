@@ -93,7 +93,7 @@ function NewsCard({
         )}
       </div>
       <div className='news-card__details details'>
-        <h5 className='deails__date'>{date}</h5>
+        <h5 className='details__date'>{date}</h5>
         <h3 className='details__title'>{title}</h3>
         <p className='details__content'>{description}</p>
         <h4 className='details__source'>{source}</h4>

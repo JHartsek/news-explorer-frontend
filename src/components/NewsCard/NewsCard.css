@@ -35,26 +35,26 @@
   }
 }
 
-.news-card__header__image {
+.news-card__image {
   width: 400px;
   height: 272px;
 }
 
 @media screen and (max-width: 900px) {
-  .news-card__header__image {
+  .news-card__image {
     width: 224px;
     height: 150px;
   }
 }
 
 @media screen and (max-width: 544px) {
-  .news-card__header__image {
+  .news-card__image {
     width: 288px;
     height: 196px;
   }
 }
 
-.news-card__header__tag {
+.news-card__tag {
   margin: 0;
   background-color: #fff;
   position: absolute;
@@ -75,7 +75,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  .news-card__header__tag {
+  .news-card__tag {
     top: 8px;
     left: 8px;
     padding: 8px 20px;
@@ -84,13 +84,13 @@
 }
 
 @media screen and (max-width: 544px) {
-  .news-card__header__tag {
+  .news-card__tag {
     top: 16px;
     left: 16px;
   }
 }
 
-.news-card__header__button {
+.news-card__button {
   border-radius: 8px;
   overflow: hidden;
   border: none;
@@ -99,7 +99,7 @@
   height: 40px;
 }
 
-.news-card__header__button_bookmark {
+.news-card__button_type_bookmark {
   background-image: url('../../images/bookmark.svg');
   background-position: center;
   background-size: cover;
@@ -108,15 +108,15 @@
   width: 40px;
 }
 
-.news-card__header__button_bookmark:hover {
+.news-card__button_type_bookmark:hover {
   background-image: url('../../images/bookmark-hover.svg');
 }
 
-.news-card__header__button_bookmark_marked {
+.news-card__button_type_bookmark_marked {
   background-image: url('../../images/bookmark-marked.svg');
 }
 
-.news-card__header__button-sign-in {
+.news-card__button_type_sign-in {
   font-family: 'Roboto', Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -126,7 +126,7 @@
   padding: 0 20px;
 }
 
-.news-card__header__button-remove {
+.news-card__button_type_remove {
   font-family: 'Roboto', Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -137,48 +137,48 @@
 }
 
 @media screen and (max-width: 900px) {
-  .news-card__header__button {
+  .news-card__button {
     top: 8px;
   }
 
-  .news-card__header__button_bookmark {
+  .news-card__button_type_bookmark {
     right: 8px;
   }
 
-  .news-card__header__button-sign-in {
+  .news-card__button_type_sign-in {
     right: 53px;
   }
 
-  .news-card__header__button-remove {
+  .news-card__button_type_remove {
     right: 53px;
   }
 }
 
 @media screen and (max-width: 544px) {
-  .news-card__header__button {
+  .news-card__button {
     top: 16px;
   }
 
-  .news-card__header__button_bookmark {
+  .news-card__button_type_bookmark {
     right: 16px;
   }
 
-  .news-card__header__button-sign-in {
+  .news-card__button_type_sign-in {
     right: 61px;
   }
 
-  .news-card__header__button-remove {
+  .news-card__button_type_remove {
     right: 61px;
   }
 }
 
-.news-card__header__button-delete {
+.news-card__button_type_delete {
   background-image: url('../../images/delete.svg');
   right: 24px;
   width: 40px;
 }
 
-.news-card__header__button-delete:hover {
+.news-card__button_type_delete:hover {
   cursor: pointer;
 }
 
@@ -202,7 +202,7 @@
   }
 }
 
-.details__date {
+.news-card__date {
   margin: 0;
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
   font-weight: 400;
@@ -213,18 +213,18 @@
 }
 
 @media screen and (max-width: 900px) {
-  .details__date {
+  .news-card__date {
     padding-bottom: 8px;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .details__date {
+  .news-card__date {
     padding-bottom: 10px;
   }
 }
 
-.details__title {
+.news-card__title {
   margin: 0 0 16px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -239,7 +239,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  .details__title {
+  .news-card__title {
     font-size: 22px;
     line-height: 1.1;
     margin-bottom: 10px;
@@ -247,12 +247,12 @@
 }
 
 @media screen and (max-width: 544px) {
-  .details__title {
+  .news-card__title {
     margin-bottom: 14px;
   }
 }
 
-.details__content {
+.news-card__content {
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 5;
@@ -269,7 +269,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  .details__content {
+  .news-card__content {
     height: 88px;
     width: 192px;
     margin-bottom: 12px;
@@ -277,14 +277,14 @@
 }
 
 @media screen and (max-width: 544px) {
-  .details__content {
+  .news-card__content {
     height: 66px;
     width: 256px;
     margin-bottom: 30px;
   }
 }
 
-.details__source {
+.news-card__source {
   margin: 0;
   font-family: 'Roboto Slab', Courier, serif;
   font-weight: 700;

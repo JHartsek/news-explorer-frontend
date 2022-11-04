@@ -42,7 +42,7 @@
   }
 }
 
-.about__text {
+.about__text-container {
   display: flex;
   flex-direction: column;
   row-gap: 24px;
@@ -52,7 +52,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  .about__text {
+  .about__text-container {
     row-gap: 16px;
     align-items: flex-start;
     padding: 0;
@@ -61,12 +61,12 @@
 }
 
 @media screen and (max-width: 544px) {
-  .about__text {
+  .about__text-container {
     max-width: 288px;
   }
 }
 
-.text__title {
+.about__title {
   margin: 0;
   font-family: 'Roboto Slab', Courier, serif;
   font-weight: 400;
@@ -75,13 +75,13 @@
 }
 
 @media screen and (max-width: 900px) {
-  .text__title {
+  .about__title {
     font-size: 30px;
     line-height: 1.33;
   }
 }
 
-.text__description {
+.about__description {
   margin: 0;
   font-family: 'Roboto', Helvetica, sans-serif;
   text-align: left;

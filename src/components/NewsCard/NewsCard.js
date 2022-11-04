@@ -46,14 +46,12 @@ function NewsCard({
   return (
     <article className='news-card'>
       <div className='news-card__header'>
-        <img src={imageUrl} className='news-card__header__image' alt={title} />
-        {isLoggedIn === true && (
-          <p className='news-card__header__tag'>{keyword}</p>
-        )}
+        <img src={imageUrl} className='news-card__image' alt={title} />
+        {isLoggedIn === true && <p className='news-card__tag'>{keyword}</p>}
         {isSignInButtonVisible === true && (
           <button
             type='button'
-            className='news-card__header__button news-card__header__button-sign-in'
+            className='news-card__button_type_sign-in'
             aria-label='sign-in'
             onClick={onSignInClick}
           >
@@ -63,7 +61,7 @@ function NewsCard({
         {isRemoveButtonVisible === true && (
           <button
             type='button'
-            className='news-card__header__button news-card__header__button-remove'
+            className='news-card__button_type_remove'
             aria-label='remove-article'
           >
             Remove from saved
@@ -72,9 +70,9 @@ function NewsCard({
         {currentPage === '/' ? (
           <button
             type='button'
-            className={`news-card__header__button news-card__header__button_bookmark ${
+            className={`news-card__button_type_bookmark ${
               isBookmarked === true
-                ? 'news-card__header__button_bookmark_marked'
+                ? 'news-card__button_type_bookmark_marked'
                 : ''
             }`}
             aria-label='bookmark article'
@@ -85,18 +83,18 @@ function NewsCard({
         ) : (
           <button
             type='button'
-            className='news-card__header__button news-card__header__button-delete'
+            className='news-card__button_type_delete'
             aria-label='delete article'
             onMouseEnter={onDeleteMouseEnter}
             onMouseLeave={onDeleteMouseLeave}
           ></button>
         )}
       </div>
-      <div className='news-card__details details'>
-        <h5 className='details__date'>{date}</h5>
-        <h3 className='details__title'>{title}</h3>
-        <p className='details__content'>{description}</p>
-        <h4 className='details__source'>{source}</h4>
+      <div className='news-card__details'>
+        <h5 className='news-card__date'>{date}</h5>
+        <h3 className='news-card__title'>{title}</h3>
+        <p className='news-card__content'>{description}</p>
+        <h4 className='news-card__source'>{source}</h4>
       </div>
     </article>
   );

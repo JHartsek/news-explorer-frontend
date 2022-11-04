@@ -30,7 +30,7 @@ function PopupWithForm({
           onSubmit={onSubmit}
           id={id}
         >
-          <h2 className={`form__title form__title_${name}`}> {title}</h2>
+          <h2 className={`form__title form__title_name_${name}`}> {title}</h2>
           {children}
           <button
             type='submit'

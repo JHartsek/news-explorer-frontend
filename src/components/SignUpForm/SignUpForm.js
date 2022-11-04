@@ -36,10 +36,7 @@ function SignUpForm({ isOpen, onClose, onLinkClick, onSignUp }) {
         minLength='2'
         maxLength='40'
       />
-      <span className='form__input-error name_input-error form__input-error_active'>
-        {' '}
-        {`${errors.email ?? ''}`}
-      </span>
+      <span className='form__input-error'> {`${errors.email ?? ''}`}</span>
 
       <label className='form__label' htmlFor='password' form='sign-up-form'>
         Password
@@ -56,9 +53,7 @@ function SignUpForm({ isOpen, onClose, onLinkClick, onSignUp }) {
         minLength='2'
         maxLength='40'
       />
-      <span className='form__input-error about_input-error'>
-        {`${errors.password ?? ''}`}
-      </span>
+      <span className='form__input-error'>{`${errors.password ?? ''}`}</span>
 
       <label className='form__label' htmlFor='username' form='sign-up-form'>
         Username
@@ -75,10 +70,7 @@ function SignUpForm({ isOpen, onClose, onLinkClick, onSignUp }) {
         minLength='2'
         maxLength='40'
       />
-      <span className='form__input-error about_input-error'>
-        {' '}
-        {`${errors.username ?? ''}`}
-      </span>
+      <span className='form__input-error'> {`${errors.username ?? ''}`}</span>
     </PopupWithForm>
   );
 }

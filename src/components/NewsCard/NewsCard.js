@@ -51,7 +51,7 @@ function NewsCard({
         {isSignInButtonVisible === true && (
           <button
             type='button'
-            className='news-card__button_type_sign-in'
+            className='news-card__button news-card__button_type_sign-in'
             aria-label='sign-in'
             onClick={onSignInClick}
           >
@@ -61,7 +61,7 @@ function NewsCard({
         {isRemoveButtonVisible === true && (
           <button
             type='button'
-            className='news-card__button_type_remove'
+            className='news-card__button news-card__button_type_remove'
             aria-label='remove-article'
           >
             Remove from saved
@@ -70,7 +70,7 @@ function NewsCard({
         {currentPage === '/' ? (
           <button
             type='button'
-            className={`news-card__button_type_bookmark ${
+            className={`news-card__button news-card__button_type_bookmark ${
               isBookmarked === true
                 ? 'news-card__button_type_bookmark_marked'
                 : ''
@@ -83,7 +83,7 @@ function NewsCard({
         ) : (
           <button
             type='button'
-            className='news-card__button_type_delete'
+            className='news-card__button news-card__button_type_delete'
             aria-label='delete article'
             onMouseEnter={onDeleteMouseEnter}
             onMouseLeave={onDeleteMouseLeave}

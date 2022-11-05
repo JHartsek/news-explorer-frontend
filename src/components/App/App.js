@@ -33,7 +33,9 @@ function App() {
   const [searchStatus, setSearchStatus] = React.useState('results');
   const [keyword, setKeyword] = React.useState(localStorage.getItem('keyword'));
   const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
-  const [newsCards, setNewsCards] = React.useState([]);
+  const [newsCards, setNewsCards] = React.useState(
+    JSON.parse(localStorage.getItem('newsCards'))
+  );
   const [displayedCardCount, setDisplayedCardCount] = React.useState(3);
   const [displayedCards, setDisplayedCards] = React.useState(
     JSON.parse(localStorage.getItem('displayedCards'))
@@ -102,8 +104,9 @@ function App() {
 
   React.useEffect(() => {
     localStorage.setItem('keyword', keyword);
+    localStorage.setItem('newsCards', JSON.stringify(newsCards));
     localStorage.setItem('displayedCards', JSON.stringify(displayedCards));
-  }, [displayedCards, displayedCardCount, keyword]);
+  }, [displayedCards, displayedCardCount, keyword, newsCards]);
 
   React.useEffect(() => {
     setCurrentPage(location.pathname);

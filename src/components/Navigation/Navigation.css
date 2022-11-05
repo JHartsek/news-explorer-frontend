@@ -90,6 +90,12 @@
   }
 }
 
+@media screen and (max-width: 544px) {
+  .navigation__link_selected {
+    padding: 14px 0;
+  }
+}
+
 .navigation__link_selected_page_saved-news {
   padding: 27px 0;
   border-bottom: 3px solid black;
@@ -100,5 +106,12 @@
   .navigation__link_selected_page_saved-news {
     padding: 20px 0;
     width: 160px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .navigation__link_selected_page_saved-news {
+    padding: 14px 0;
+    width: 140px;
   }
 }

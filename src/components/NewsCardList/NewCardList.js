@@ -13,6 +13,15 @@ function NewsCardList({
   isLoggedIn,
   currentPage,
 }) {
+  function formatDate(card) {
+    const fullDate = new Date(card.publishedAt);
+    const year = fullDate.getFullYear();
+    const month = fullDate.toLocaleString('default', { month: 'long' });
+    const day = fullDate.getDate();
+    const date = `${month} ${day}, ${year}`;
+    return date;
+  }
+
   return (
     <section className='news-card-list'>
       <h2 className='news-card-list__title'>Search results</h2>
@@ -23,7 +32,7 @@ function NewsCardList({
               newsCard={card}
               key={card.title}
               keyword={keyword}
-              date={card.date}
+              date={formatDate(card)}
               imageUrl={card.urlToImage}
               title={card.title}
               description={card.description}

@@ -30,8 +30,8 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isRegistrationSuccessOpen, setIsRegistrationSuccessOpen] =
     React.useState(false);
-  const [searchStatus, setSearchStatus] = React.useState('default');
-  const [keyword, setKeyword] = React.useState('');
+  const [searchStatus, setSearchStatus] = React.useState('results');
+  const [keyword, setKeyword] = React.useState(localStorage.getItem('keyword'));
   const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
   const [newsCards, setNewsCards] = React.useState([]);
   const [displayedCardCount, setDisplayedCardCount] = React.useState(3);
@@ -101,8 +101,9 @@ function App() {
   }
 
   React.useEffect(() => {
+    localStorage.setItem('keyword', keyword);
     localStorage.setItem('displayedCards', JSON.stringify(displayedCards));
-  }, [displayedCards, displayedCardCount]);
+  }, [displayedCards, displayedCardCount, keyword]);
 
   React.useEffect(() => {
     setCurrentPage(location.pathname);
@@ -206,7 +207,7 @@ function App() {
           {(searchStatus === 'no-results' || searchStatus === 'error') && (
             <NoResults searchStatus={searchStatus} />
           )}
-          {searchStatus === 'results' && (
+          {displayedCards && (
             <NewsCardList
               displayedCards={displayedCards}
               onShowMoreClick={showMoreCards}

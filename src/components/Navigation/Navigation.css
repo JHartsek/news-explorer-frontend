@@ -1,0 +1,117 @@
+.navigation {
+  display: flex;
+  column-gap: 42px;
+  align-items: center;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 500;
+}
+
+.navigation_page_saved-news {
+  column-gap: 76px;
+}
+
+@media screen and (max-width: 900px) {
+  .navigation {
+    column-gap: 16px;
+  }
+}
+
+.navigation__link {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.33;
+  text-decoration: none;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+}
+
+@media screen and (max-width: 900px) {
+  .navigation__link {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.navigation__link_page_saved-news {
+  color: rgba(26, 27, 34, 1);
+}
+
+.navigation__button {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 1.33;
+  height: 48px;
+  padding: 0 19px;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #fff;
+  background-color: transparent;
+  border-radius: 100px;
+}
+
+.navigation__button:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .navigation__button {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.navigation__button_page_saved-news {
+  color: rgba(26, 27, 34, 1);
+  border-color: rgba(26, 27, 34, 1);
+}
+
+.button__icon {
+  height: 16px;
+  width: 18px;
+  padding-left: 20px;
+}
+
+@media screen and (max-width: 900px) {
+  .button__icon {
+    padding-left: 17px;
+  }
+}
+
+.navigation__link_selected {
+  padding: 27px 0;
+  border-bottom: 3px solid #fff;
+}
+
+@media screen and (max-width: 900px) {
+  .navigation__link_selected {
+    padding: 20px 0;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .navigation__link_selected {
+    padding: 14px 0;
+  }
+}
+
+.navigation__link_selected_page_saved-news {
+  padding: 27px 0;
+  border-bottom: 3px solid black;
+  width: 175px;
+}
+
+@media screen and (max-width: 900px) {
+  .navigation__link_selected_page_saved-news {
+    padding: 20px 0;
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .navigation__link_selected_page_saved-news {
+    padding: 14px 0;
+    width: 140px;
+  }
+}

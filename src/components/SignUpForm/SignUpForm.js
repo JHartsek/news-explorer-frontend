@@ -28,7 +28,7 @@ function SignUpForm({ isOpen, onClose, onLinkClick, onSignUp }) {
         id='email'
         name='email'
         className='form__input'
-        type='text'
+        type='email'
         value={inputValues.email || ''}
         placeholder='Enter email'
         onChange={handleChange}

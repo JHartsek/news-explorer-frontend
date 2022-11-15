@@ -1,11 +1,16 @@
+import React from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import './SavedNewsHeader.css';
 
 function SavedNewsHeader() {
+  const { name } = React.useContext(CurrentUserContext);
+
   return (
     <section className='saved-news-header'>
       <h2 className='saved-news-header__tag'>Saved articles</h2>
       <h1 className='saved-news-header__title'>
-        Elise, you have 5 saved articles
+        {`${name}, you have 5 saved articles`}
       </h1>
       <h2 className='saved-news-header__details'>
         By keywords:{' '}

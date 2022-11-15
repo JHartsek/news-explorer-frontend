@@ -50,3 +50,23 @@ export const getSavedArticles = (token) => {
     },
   }).then(checkResponse);
 };
+
+export const savedArticle = (token, article, keyword) => {
+  const { title, description, publisedAt, source, url, urlToImage } = article;
+  return fetch(`${baseUrl}/articles`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      keyword: keyword,
+      title: title,
+      text: description,
+      date: publisedAt,
+      source: source,
+      link: url,
+      image: urlToImage,
+    }),
+  }).then(checkResponse);
+};

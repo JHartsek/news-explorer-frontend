@@ -178,7 +178,9 @@ function App() {
   }
 
   function handleBookmarkClick(card) {
-    setSavedCards([...savedCards, card]);
+    auth.savedArticle(card).catch((err) => {
+      console.log(err);
+    });
   }
 
   React.useEffect(() => {

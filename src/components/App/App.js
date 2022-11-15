@@ -18,6 +18,7 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import SignInForm from '../SignInForm/SignInForm';
 
 import { searchForNews } from '../../utils/NewsApi';
+import * as auth from '../../utils/MainApi';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState(
@@ -28,6 +29,7 @@ function App() {
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [formSubmissionError, setFormSubmissionError ] = React.useState('');
   const [isRegistrationSuccessOpen, setIsRegistrationSuccessOpen] =
     React.useState(false);
   const [searchStatus, setSearchStatus] = React.useState('results');
@@ -97,9 +99,16 @@ function App() {
     setIsSignUpFormOpen(true);
   }
 
-  function handleSignUpSubmit() {
-    setIsRegistrationSuccessOpen(true);
-    setIsSignUpFormOpen(false);
+  function handleSignUpSubmit(info) {
+    const { email, password, name } = info;
+    auth.signup(email, password, name)
+    .then(()=> {
+      setIsRegistrationSuccessOpen(true);
+      setIsSignUpFormOpen(false);
+    })
+    .catch((err) => {
+      setFormSubmissionError(err);
+    })
   }
 
   React.useEffect(() => {
@@ -229,6 +238,7 @@ function App() {
             onClose={closeAllPopups}
             onLinkClick={handleSignInClick}
             onSignUp={handleSignUpSubmit}
+            formSubmissionError={formSubmissionError}
           />
           <SignInForm
             isOpen={isSignInFormOpen}

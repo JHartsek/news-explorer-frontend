@@ -12,6 +12,7 @@ function PopupWithForm({
   onSubmit,
   children,
   isValid,
+  formSubmissionError,
 }) {
   return (
     <section
@@ -32,6 +33,9 @@ function PopupWithForm({
         >
           <h2 className={`form__title form__title_name_${name}`}> {title}</h2>
           {children}
+          <span className='form__submission-error'>{`${
+            formSubmissionError ?? ''
+          }`}</span>
           <button
             type='submit'
             className={`form__save-button ${

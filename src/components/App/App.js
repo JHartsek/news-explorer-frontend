@@ -26,7 +26,10 @@ function App() {
     localStorage.getItem('')
   );
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({
+    name: 'Julia',
+    email: 'JLHartsek@gmail.com',
+  });
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
@@ -191,6 +194,14 @@ function App() {
   }, []);
 
   React.useEffect(() => {
+    auth
+      .getSavedArticles(localStorage.getItem('token'))
+      .then((articles) => {
+        setSavedCards(articles);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     getScreenWidth();
     window.addEventListener('resize', getScreenWidth);
 
@@ -220,6 +231,7 @@ function App() {
               keyword={keyword}
               onBookmarkClick={handleBookmarkClick}
               currentPage={currentPage}
+              savedCards={savedCards}
             />
             <Footer />
           </CurrentUserContext.Provider>

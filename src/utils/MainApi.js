@@ -40,3 +40,13 @@ export const checkToken = (token) => {
     },
   }).then(checkResponse);
 };
+
+export const getSavedArticles = (token) => {
+  return fetch(`${baseUrl}/articles`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};

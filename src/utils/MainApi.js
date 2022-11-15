@@ -1,4 +1,5 @@
-const baseUrl = 'https://http://localhost:3000';
+const baseUrl =
+  'https://api.news-explorer-hartsek.students.nomoredomainssbs.ru';
 const headers = {
   'content-type': 'application/json',
 };
@@ -15,6 +16,17 @@ export const signup = (email, password, name) => {
       password: password,
       email: email,
       name: name,
+    }),
+  }).then(checkResponse);
+};
+
+export const signin = (email, password) => {
+  return fetch(`${baseUrl}/signin`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      password: password,
+      email: email,
     }),
   }).then(checkResponse);
 };

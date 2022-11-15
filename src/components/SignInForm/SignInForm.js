@@ -1,11 +1,17 @@
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { useFormValidation } from '../../hooks/useFormValidation';
 
-function SignInForm({ isOpen, onClose, onLinkClick }) {
+function SignInForm({
+  isOpen,
+  onClose,
+  onLinkClick,
+  onSignIn,
+  formSubmissionError,
+}) {
   const { inputValues, handleChange, errors, isValid } = useFormValidation();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form submitted');
+    onSignIn(inputValues);
   };
 
   return (
@@ -20,6 +26,7 @@ function SignInForm({ isOpen, onClose, onLinkClick }) {
       onLinkClick={onLinkClick}
       onSubmit={handleSubmit}
       isValid={isValid}
+      formSubmissionError={formSubmissionError}
     >
       <label className='form__label' htmlFor='email' form='sign-in-form'>
         Email

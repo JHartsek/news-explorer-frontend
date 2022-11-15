@@ -29,7 +29,7 @@ function App() {
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [formSubmissionError, setFormSubmissionError ] = React.useState('');
+  const [formSubmissionError, setFormSubmissionError] = React.useState('');
   const [isRegistrationSuccessOpen, setIsRegistrationSuccessOpen] =
     React.useState(false);
   const [searchStatus, setSearchStatus] = React.useState('results');
@@ -101,14 +101,28 @@ function App() {
 
   function handleSignUpSubmit(info) {
     const { email, password, name } = info;
-    auth.signup(email, password, name)
-    .then(()=> {
-      setIsRegistrationSuccessOpen(true);
-      setIsSignUpFormOpen(false);
-    })
-    .catch((err) => {
-      setFormSubmissionError(err);
-    })
+    auth
+      .signup(email, password, name)
+      .then(() => {
+        setIsRegistrationSuccessOpen(true);
+        setIsSignUpFormOpen(false);
+      })
+      .catch((err) => {
+        setFormSubmissionError(err);
+      });
+  }
+
+  function handleSignInSubmit(info) {
+    const { email, password } = info;
+    auth
+      .signin(email, password)
+      .then((res) => {
+        localStorage.setItem('token', res.token);
+        setIsSignInFormOpen(false);
+      })
+      .catch((err) => {
+        setFormSubmissionError(err);
+      });
   }
 
   React.useEffect(() => {
@@ -244,6 +258,8 @@ function App() {
             isOpen={isSignInFormOpen}
             onClose={closeAllPopups}
             onLinkClick={handleSignUpClick}
+            onSignIn={handleSignInSubmit}
+            formSubmissionError={formSubmissionError}
           />
           <Popup isOpen={isRegistrationSuccessOpen} onClose={closeAllPopups}>
             <RegistrationSuccess onLinkClick={handleSignInClick} />

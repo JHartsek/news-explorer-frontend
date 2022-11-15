@@ -17,6 +17,7 @@ import Footer from '../Footer/Footer';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import SignInForm from '../SignInForm/SignInForm';
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { searchForNews } from '../../utils/NewsApi';
 import * as auth from '../../utils/MainApi';
 
@@ -25,6 +26,7 @@ function App() {
     localStorage.getItem('')
   );
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [currentUser, setCurrentUser] = React.useState({});
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
@@ -114,11 +116,18 @@ function App() {
 
   function handleSignInSubmit(info) {
     const { email, password } = info;
+    let token;
     auth
       .signin(email, password)
       .then((res) => {
-        localStorage.setItem('token', res.token);
+        token = res.token;
+        localStorage.setItem('token', token);
         setIsSignInFormOpen(false);
+      })
+      .then(() => {
+        auth.checkToken(token).then((user) => {
+          setCurrentUser(user);
+        });
       })
       .catch((err) => {
         setFormSubmissionError(err);
@@ -192,78 +201,82 @@ function App() {
     <div className='App'>
       <Switch>
         <Route path='/saved-news'>
-          <Header
-            currentPage={currentPage}
-            isLoggedIn={isLoggedIn}
-            device={device}
-            isMenuOpen={isMenuOpen}
-            onMenuClick={handleMenuClick}
-            onCloseMenu={closeMenu}
-            onHomeClick={handleHomeClick}
-            onSavedArticlesClick={handleSavedArticlesClick}
-            onSignInClick={handleSignInClick}
-            onSignOutClick={handleSignOutClick}
-          />
-          {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
-          <SavedNewsHeader />
-          <SavedNews
-            keyword={keyword}
-            onBookmarkClick={handleBookmarkClick}
-            currentPage={currentPage}
-          />
-          <Footer />
+          <CurrentUserContext.Provider value={currentUser}>
+            <Header
+              currentPage={currentPage}
+              isLoggedIn={isLoggedIn}
+              device={device}
+              isMenuOpen={isMenuOpen}
+              onMenuClick={handleMenuClick}
+              onCloseMenu={closeMenu}
+              onHomeClick={handleHomeClick}
+              onSavedArticlesClick={handleSavedArticlesClick}
+              onSignInClick={handleSignInClick}
+              onSignOutClick={handleSignOutClick}
+            />
+            {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
+            <SavedNewsHeader />
+            <SavedNews
+              keyword={keyword}
+              onBookmarkClick={handleBookmarkClick}
+              currentPage={currentPage}
+            />
+            <Footer />
+          </CurrentUserContext.Provider>
         </Route>
 
         <Route path='/'>
-          <Header
-            currentPage={currentPage}
-            isLoggedIn={isLoggedIn}
-            device={device}
-            isMenuOpen={isMenuOpen}
-            onMenuClick={handleMenuClick}
-            onCloseMenu={closeMenu}
-            onHomeClick={handleHomeClick}
-            onSavedArticlesClick={handleSavedArticlesClick}
-            onSignInClick={handleSignInClick}
-            onSignOutClick={handleSignOutClick}
-          />
-          {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
-          <Main onSearchSubmit={handleSearch} />
-          {searchStatus === 'loading' && <Preloader />}
-          {(searchStatus === 'no-results' || searchStatus === 'error') && (
-            <NoResults searchStatus={searchStatus} />
-          )}
-          {displayedCards && (
-            <NewsCardList
-              displayedCards={displayedCards}
-              onShowMoreClick={showMoreCards}
-              showMoreStatus={showMoreStatus}
-              isLoggedIn={isLoggedIn}
+          <CurrentUserContext.Provider value={currentUser}>
+            <Header
               currentPage={currentPage}
+              isLoggedIn={isLoggedIn}
+              device={device}
+              isMenuOpen={isMenuOpen}
+              onMenuClick={handleMenuClick}
+              onCloseMenu={closeMenu}
+              onHomeClick={handleHomeClick}
+              onSavedArticlesClick={handleSavedArticlesClick}
               onSignInClick={handleSignInClick}
-              onBookmarkClick={handleBookmarkClick}
-              keyword={keyword}
+              onSignOutClick={handleSignOutClick}
             />
-          )}
-          <About />
-          <Footer />
-          <SignUpForm
-            isOpen={isSignUpFormOpen}
-            onClose={closeAllPopups}
-            onLinkClick={handleSignInClick}
-            onSignUp={handleSignUpSubmit}
-            formSubmissionError={formSubmissionError}
-          />
-          <SignInForm
-            isOpen={isSignInFormOpen}
-            onClose={closeAllPopups}
-            onLinkClick={handleSignUpClick}
-            onSignIn={handleSignInSubmit}
-            formSubmissionError={formSubmissionError}
-          />
-          <Popup isOpen={isRegistrationSuccessOpen} onClose={closeAllPopups}>
-            <RegistrationSuccess onLinkClick={handleSignInClick} />
-          </Popup>
+            {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
+            <Main onSearchSubmit={handleSearch} />
+            {searchStatus === 'loading' && <Preloader />}
+            {(searchStatus === 'no-results' || searchStatus === 'error') && (
+              <NoResults searchStatus={searchStatus} />
+            )}
+            {displayedCards && (
+              <NewsCardList
+                displayedCards={displayedCards}
+                onShowMoreClick={showMoreCards}
+                showMoreStatus={showMoreStatus}
+                isLoggedIn={isLoggedIn}
+                currentPage={currentPage}
+                onSignInClick={handleSignInClick}
+                onBookmarkClick={handleBookmarkClick}
+                keyword={keyword}
+              />
+            )}
+            <About />
+            <Footer />
+            <SignUpForm
+              isOpen={isSignUpFormOpen}
+              onClose={closeAllPopups}
+              onLinkClick={handleSignInClick}
+              onSignUp={handleSignUpSubmit}
+              formSubmissionError={formSubmissionError}
+            />
+            <SignInForm
+              isOpen={isSignInFormOpen}
+              onClose={closeAllPopups}
+              onLinkClick={handleSignUpClick}
+              onSignIn={handleSignInSubmit}
+              formSubmissionError={formSubmissionError}
+            />
+            <Popup isOpen={isRegistrationSuccessOpen} onClose={closeAllPopups}>
+              <RegistrationSuccess onLinkClick={handleSignInClick} />
+            </Popup>
+          </CurrentUserContext.Provider>
         </Route>
       </Switch>
     </div>

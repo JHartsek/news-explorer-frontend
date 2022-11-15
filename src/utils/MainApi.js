@@ -30,3 +30,13 @@ export const signin = (email, password) => {
     }),
   }).then(checkResponse);
 };
+
+export const checkToken = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};

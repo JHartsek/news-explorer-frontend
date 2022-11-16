@@ -2,7 +2,7 @@ import './SavedNews.css';
 
 import NewsCard from '../NewsCard/NewsCard';
 
-function SavedNews({ currentPage, savedCards }) {
+function SavedNews({ currentPage, savedCards, onDeleteClick }) {
   return (
     <section className='saved-news'>
       <div className='saved-news__cards'>
@@ -10,6 +10,7 @@ function SavedNews({ currentPage, savedCards }) {
           const { keyword, date, image, title, text, source } = card;
           return (
             <NewsCard
+              newsCard={card}
               keyword={keyword}
               date={date}
               imageUrl={image}
@@ -18,6 +19,7 @@ function SavedNews({ currentPage, savedCards }) {
               source={source}
               currentPage={currentPage}
               isLoggedIn={true}
+              onDeleteClick={onDeleteClick}
             />
           );
         })}

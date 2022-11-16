@@ -51,7 +51,6 @@ export const getSavedArticles = (token) => {
 };
 
 export const saveArticle = (token, article, keyword) => {
-  console.log(article);
   const { title, description, publishedAt, source, url, urlToImage } = article;
   return fetch(`${baseUrl}/articles`, {
     method: 'POST',
@@ -68,5 +67,15 @@ export const saveArticle = (token, article, keyword) => {
       link: url,
       image: urlToImage,
     }),
+  }).then(checkResponse);
+};
+
+export const deleteArticle = (token, articleId) => {
+  return fetch(`${baseUrl}/articles/${articleId}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 };

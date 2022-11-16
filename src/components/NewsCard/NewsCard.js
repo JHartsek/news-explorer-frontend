@@ -13,6 +13,7 @@ function NewsCard({
   currentPage,
   onSignInClick,
   onBookmarkClick,
+  onDeleteClick,
 }) {
   const [isSignInButtonVisible, setIsSignInButtonVisible] =
     React.useState(false);
@@ -36,10 +37,17 @@ function NewsCard({
     setIsRemoveButtonVisible(false);
   }
 
-  function onClick() {
+  function handleBookmarkClick() {
     onBookmarkClick(newsCard);
     if (isLoggedIn === true) {
       setIsBookmarked(true);
+    }
+  }
+
+  function handleDeleteClick() {
+    onDeleteClick(newsCard);
+    if (isLoggedIn === true) {
+      setIsBookmarked(false);
     }
   }
 
@@ -76,7 +84,7 @@ function NewsCard({
                 : ''
             }`}
             aria-label='bookmark article'
-            onClick={onClick}
+            onClick={handleBookmarkClick}
             onMouseEnter={onBookmarkMouseEnter}
             onMouseLeave={onBookmarkMouseLeave}
           ></button>
@@ -87,6 +95,7 @@ function NewsCard({
             aria-label='delete article'
             onMouseEnter={onDeleteMouseEnter}
             onMouseLeave={onDeleteMouseLeave}
+            onClick={handleDeleteClick}
           ></button>
         )}
       </div>

@@ -105,7 +105,7 @@ function App() {
   }
 
   function handleSignUpSubmit(info) {
-    const { email, password, name } = info;
+    const { email, password, username: name } = info;
     auth
       .signup(email, password, name)
       .then(() => {
@@ -126,6 +126,7 @@ function App() {
         token = res.token;
         localStorage.setItem('token', token);
         setIsSignInFormOpen(false);
+        setIsLoggedIn(true);
       })
       .then(() => {
         auth.checkToken(token).then((user) => {
@@ -178,7 +179,16 @@ function App() {
   }
 
   function handleBookmarkClick(card) {
-    auth.savedArticle(card).catch((err) => {
+    const token = localStorage.getItem('token');
+    auth.saveArticle(token, card, keyword).catch((err) => {
+      console.log(err);
+    });
+  }
+
+  function handleDeleteClick(card) {
+    const token = localStorage.getItem('token');
+    console.log(card._id);
+    auth.deleteArticle(token, card._id).catch((err) => {
       console.log(err);
     });
   }
@@ -228,10 +238,10 @@ function App() {
               onSignOutClick={handleSignOutClick}
             />
             {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
-            <SavedNewsHeader />
+            <SavedNewsHeader savedCards={savedCards} />
             <SavedNews
               keyword={keyword}
-              onBookmarkClick={handleBookmarkClick}
+              onDeleteClick={handleDeleteClick}
               currentPage={currentPage}
               savedCards={savedCards}
             />

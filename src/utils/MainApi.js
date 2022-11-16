@@ -1,5 +1,4 @@
-const baseUrl =
-  'https://api.news-explorer-hartsek.students.nomoredomainssbs.ru';
+const baseUrl = 'http://localhost:3000';
 const headers = {
   'content-type': 'application/json',
 };
@@ -13,9 +12,9 @@ export const signup = (email, password, name) => {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({
-      password: password,
-      email: email,
       name: name,
+      email: email,
+      password: password,
     }),
   }).then(checkResponse);
 };
@@ -51,8 +50,9 @@ export const getSavedArticles = (token) => {
   }).then(checkResponse);
 };
 
-export const savedArticle = (token, article, keyword) => {
-  const { title, description, publisedAt, source, url, urlToImage } = article;
+export const saveArticle = (token, article, keyword) => {
+  console.log(article);
+  const { title, description, publishedAt, source, url, urlToImage } = article;
   return fetch(`${baseUrl}/articles`, {
     method: 'POST',
     headers: {
@@ -63,8 +63,8 @@ export const savedArticle = (token, article, keyword) => {
       keyword: keyword,
       title: title,
       text: description,
-      date: publisedAt,
-      source: source,
+      date: publishedAt,
+      source: source.name,
       link: url,
       image: urlToImage,
     }),

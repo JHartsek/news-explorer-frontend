@@ -25,11 +25,10 @@ function App() {
   const [currentPage, setCurrentPage] = React.useState(
     localStorage.getItem('')
   );
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
-  const [currentUser, setCurrentUser] = React.useState({
-    name: 'Julia',
-    email: 'JLHartsek@gmail.com',
-  });
+  const [isLoggedIn, setIsLoggedIn] = React.useState(
+    localStorage.getItem('token') ? true : false
+  );
+  const [currentUser, setCurrentUser] = React.useState({});
   const [device, setDevice] = React.useState('computer');
   const [isSignUpFormOpen, setIsSignUpFormOpen] = React.useState(false);
   const [isSignInFormOpen, setIsSignInFormOpen] = React.useState(false);
@@ -151,7 +150,7 @@ function App() {
 
   function handleSearch(keyword) {
     setSearchStatus('loading');
-    setKeyword(keyword);
+    setKeyword(keyword.toLowerCase());
     searchForNews(keyword)
       .then(({ articles }) => {
         setNewsCards(articles);
@@ -180,14 +179,18 @@ function App() {
 
   function handleBookmarkClick(card) {
     const token = localStorage.getItem('token');
-    auth.saveArticle(token, card, keyword).catch((err) => {
-      console.log(err);
-    });
+    auth
+      .saveArticle(token, card, keyword)
+      .then((article) => {
+        setSavedCards([...savedCards, article]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleDeleteClick(card) {
     const token = localStorage.getItem('token');
-    console.log(card._id);
     auth.deleteArticle(token, card._id).catch((err) => {
       console.log(err);
     });
@@ -214,6 +217,16 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+
+    auth
+      .checkToken(localStorage.getItem('token'))
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     getScreenWidth();
     window.addEventListener('resize', getScreenWidth);
 

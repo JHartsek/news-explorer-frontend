@@ -22,10 +22,13 @@ function NewsCard({
     React.useState(false);
 
   function onBookmarkMouseEnter() {
-    setIsSignInButtonVisible(true);
+    if (isLoggedIn === false) {
+      setIsSignInButtonVisible(true);
+    }
   }
 
   function onBookmarkMouseLeave() {
+    console.log('hi');
     setIsSignInButtonVisible(false);
   }
 
@@ -62,6 +65,7 @@ function NewsCard({
             className='news-card__button news-card__button_type_sign-in'
             aria-label='sign-in'
             onClick={onSignInClick}
+            onMouseLeave={onBookmarkMouseLeave}
           >
             Sign in to save articles
           </button>
@@ -86,7 +90,6 @@ function NewsCard({
             aria-label='bookmark article'
             onClick={handleBookmarkClick}
             onMouseEnter={onBookmarkMouseEnter}
-            onMouseLeave={onBookmarkMouseLeave}
           ></button>
         ) : (
           <button

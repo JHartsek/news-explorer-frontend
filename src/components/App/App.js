@@ -189,9 +189,11 @@ function App() {
       );
     };
     sortByFrequency();
+  }, [savedCards]);
 
+  React.useEffect(() => {
     localStorage.setItem('sortedKeywords', JSON.stringify(sortedKeywords));
-  }, [sortedKeywords, savedCards]);
+  }, [sortedKeywords]);
 
   React.useEffect(() => {
     setCurrentPage(location.pathname);
@@ -206,20 +208,18 @@ function App() {
         setNewsCards(articles);
         if (articles.length === 0) {
           setSearchStatus('no-results');
+        } else {
+          setSearchStatus('results');
         }
         if (articles.length <= 3) {
           setShowMoreStatus('hidden');
         }
-        setSearchStatus('results');
         setDisplayedCards(articles.slice(0, 3));
         setDisplayedCardCount(3);
       })
       .catch((err) => {
         setSearchStatus('error');
         console.log(err);
-      })
-      .finally(() => {
-        setSearchStatus('results');
       });
   }
 

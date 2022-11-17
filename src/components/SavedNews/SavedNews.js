@@ -23,6 +23,7 @@ function SavedNews({ currentPage, savedCards, sortedKeywords, onDeleteClick }) {
           return (
             <NewsCard
               newsCard={card}
+              key={card._id}
               keyword={keyword}
               date={date}
               imageUrl={image}

@@ -32,7 +32,7 @@ function SignInForm({
         Email
       </label>
       <input
-        id='email'
+        id='sign-in-email'
         name='email'
         className='form__input'
         type='email'
@@ -49,7 +49,7 @@ function SignInForm({
         Password
       </label>
       <input
-        id='password'
+        id='sign-in-password'
         name='password'
         className='form__input'
         type='password'

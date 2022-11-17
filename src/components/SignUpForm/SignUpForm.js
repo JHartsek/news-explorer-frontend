@@ -32,7 +32,7 @@ function SignUpForm({
         Email
       </label>
       <input
-        id='email'
+        id='sign-up-email'
         name='email'
         className='form__input'
         type='email'
@@ -49,7 +49,7 @@ function SignUpForm({
         Password
       </label>
       <input
-        id='password'
+        id='sign-up-password'
         name='password'
         className='form__input'
         type='password'

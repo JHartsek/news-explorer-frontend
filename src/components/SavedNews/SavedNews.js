@@ -2,11 +2,23 @@ import './SavedNews.css';
 
 import NewsCard from '../NewsCard/NewsCard';
 
-function SavedNews({ currentPage, savedCards, onDeleteClick }) {
+function SavedNews({ currentPage, savedCards, sortedKeywords, onDeleteClick }) {
+  let sortedCards = [];
+  function sortCards() {
+    sortedKeywords.forEach((word) => {
+      savedCards.forEach((card) => {
+        if (card.keyword === word) {
+          sortedCards.push(card);
+        }
+      });
+    });
+  }
+  sortCards();
+
   return (
     <section className='saved-news'>
       <div className='saved-news__cards'>
-        {savedCards.map((card) => {
+        {sortedCards.map((card) => {
           const { keyword, date, image, title, text, source } = card;
           return (
             <NewsCard

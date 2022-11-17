@@ -38,6 +38,11 @@ function App() {
     React.useState(false);
   const [searchStatus, setSearchStatus] = React.useState('results');
   const [keyword, setKeyword] = React.useState(localStorage.getItem('keyword'));
+  const [sortedKeywords, setSortedKeywords] = React.useState(
+    localStorage.getItem('sortedKeywords')
+      ? JSON.parse(localStorage.getItem('sortedKeywords'))
+      : []
+  );
   const [showMoreStatus, setShowMoreStatus] = React.useState('visible');
   const [newsCards, setNewsCards] = React.useState(
     JSON.parse(localStorage.getItem('newsCards'))
@@ -144,6 +149,51 @@ function App() {
   }, [displayedCards, displayedCardCount, keyword, newsCards]);
 
   React.useEffect(() => {
+    let allKeywords = [];
+    const geAllKeywords = () => {
+      savedCards.forEach((card) => {
+        const { keyword } = card;
+        allKeywords.push(keyword);
+      });
+    };
+
+    geAllKeywords();
+
+    let uniqueKeywords = [];
+
+    const getUniqueKeywords = () => {
+      savedCards.forEach((card) => {
+        const { keyword } = card;
+        if (!uniqueKeywords.includes(keyword)) {
+          uniqueKeywords.push(keyword);
+        }
+      });
+    };
+
+    getUniqueKeywords();
+
+    let frequencies = {};
+
+    const sortByFrequency = () => {
+      for (const element of allKeywords) {
+        if (frequencies[element]) {
+          frequencies[element] += 1;
+        } else {
+          frequencies[element] = 1;
+        }
+      }
+      setSortedKeywords(
+        uniqueKeywords.sort((a, b) => {
+          return frequencies[b] - frequencies[a];
+        })
+      );
+    };
+    sortByFrequency();
+
+    localStorage.setItem('sortedKeywords', JSON.stringify(sortedKeywords));
+  }, [sortedKeywords, savedCards]);
+
+  React.useEffect(() => {
     setCurrentPage(location.pathname);
     localStorage.setItem('currentPage', currentPage);
   }, [location.pathname, currentPage]);
@@ -191,9 +241,14 @@ function App() {
 
   function handleDeleteClick(card) {
     const token = localStorage.getItem('token');
-    auth.deleteArticle(token, card._id).catch((err) => {
-      console.log(err);
-    });
+    auth
+      .deleteArticle(token, card._id)
+      .then((updateArticles) => {
+        setSavedCards(updateArticles);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   React.useEffect(() => {
@@ -251,12 +306,15 @@ function App() {
               onSignOutClick={handleSignOutClick}
             />
             {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
-            <SavedNewsHeader savedCards={savedCards} />
+            <SavedNewsHeader
+              savedCards={savedCards}
+              sortedKeywords={sortedKeywords}
+            />
             <SavedNews
-              keyword={keyword}
               onDeleteClick={handleDeleteClick}
               currentPage={currentPage}
               savedCards={savedCards}
+              sortedKeywords={sortedKeywords}
             />
             <Footer />
           </CurrentUserContext.Provider>

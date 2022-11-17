@@ -12,6 +12,7 @@ import NoResults from '../NoResults/NoResults';
 import NewsCardList from '../NewsCardList/NewCardList';
 import SavedNews from '../SavedNews/SavedNews';
 import Popup from '../Popup/Popup';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegistrationSuccess from '../RegistrationSuccess/RegistrationSuccess';
 import Footer from '../Footer/Footer';
 import SignUpForm from '../SignUpForm/SignUpForm';
@@ -292,36 +293,7 @@ function App() {
   return (
     <div className='App'>
       <Switch>
-        <Route path='/saved-news'>
-          <CurrentUserContext.Provider value={currentUser}>
-            <Header
-              currentPage={currentPage}
-              isLoggedIn={isLoggedIn}
-              device={device}
-              isMenuOpen={isMenuOpen}
-              onMenuClick={handleMenuClick}
-              onCloseMenu={closeMenu}
-              onHomeClick={handleHomeClick}
-              onSavedArticlesClick={handleSavedArticlesClick}
-              onSignInClick={handleSignInClick}
-              onSignOutClick={handleSignOutClick}
-            />
-            {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
-            <SavedNewsHeader
-              savedCards={savedCards}
-              sortedKeywords={sortedKeywords}
-            />
-            <SavedNews
-              onDeleteClick={handleDeleteClick}
-              currentPage={currentPage}
-              savedCards={savedCards}
-              sortedKeywords={sortedKeywords}
-            />
-            <Footer />
-          </CurrentUserContext.Provider>
-        </Route>
-
-        <Route path='/'>
+        <Route exact path='/'>
           <CurrentUserContext.Provider value={currentUser}>
             <Header
               currentPage={currentPage}
@@ -374,6 +346,39 @@ function App() {
             </Popup>
           </CurrentUserContext.Provider>
         </Route>
+
+        <ProtectedRoute isLoggedIn={isLoggedIn}>
+          <Route path='/saved-news'>
+            <CurrentUserContext.Provider value={currentUser}>
+              <Header
+                currentPage={currentPage}
+                isLoggedIn={isLoggedIn}
+                device={device}
+                isMenuOpen={isMenuOpen}
+                onMenuClick={handleMenuClick}
+                onCloseMenu={closeMenu}
+                onHomeClick={handleHomeClick}
+                onSavedArticlesClick={handleSavedArticlesClick}
+                onSignInClick={handleSignInClick}
+                onSignOutClick={handleSignOutClick}
+              />
+              {isMenuOpen === true && (
+                <Menu onSignInClick={handleSignInClick} />
+              )}
+              <SavedNewsHeader
+                savedCards={savedCards}
+                sortedKeywords={sortedKeywords}
+              />
+              <SavedNews
+                onDeleteClick={handleDeleteClick}
+                currentPage={currentPage}
+                savedCards={savedCards}
+                sortedKeywords={sortedKeywords}
+              />
+              <Footer />
+            </CurrentUserContext.Provider>
+          </Route>
+        </ProtectedRoute>
       </Switch>
     </div>
   );

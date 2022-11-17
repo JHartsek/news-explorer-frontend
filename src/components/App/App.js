@@ -99,6 +99,7 @@ function App() {
   }
 
   function handleSignOutClick() {
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
     history.push('/');
   }

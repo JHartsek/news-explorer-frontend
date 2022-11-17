@@ -19,7 +19,7 @@ import SignInForm from '../SignInForm/SignInForm';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { searchForNews } from '../../utils/NewsApi';
-import * as auth from '../../utils/MainApi';
+import * as mainApi from '../../utils/MainApi';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState(
@@ -111,7 +111,7 @@ function App() {
 
   function handleSignUpSubmit(info) {
     const { email, password, username: name } = info;
-    auth
+    mainApi
       .signup(email, password, name)
       .then(() => {
         setIsRegistrationSuccessOpen(true);
@@ -125,7 +125,7 @@ function App() {
   function handleSignInSubmit(info) {
     const { email, password } = info;
     let token;
-    auth
+    mainApi
       .signin(email, password)
       .then((res) => {
         token = res.token;
@@ -134,7 +134,7 @@ function App() {
         setIsLoggedIn(true);
       })
       .then(() => {
-        auth.checkToken(token).then((user) => {
+        mainApi.checkToken(token).then((user) => {
           setCurrentUser(user);
         });
       })
@@ -230,7 +230,7 @@ function App() {
 
   function handleBookmarkClick(card) {
     const token = localStorage.getItem('token');
-    auth
+    mainApi
       .saveArticle(token, card, keyword)
       .then((article) => {
         setSavedCards([...savedCards, article]);
@@ -242,7 +242,7 @@ function App() {
 
   function handleDeleteClick(card) {
     const token = localStorage.getItem('token');
-    auth
+    mainApi
       .deleteArticle(token, card._id)
       .then((updateArticles) => {
         setSavedCards(updateArticles);
@@ -265,7 +265,7 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    auth
+    mainApi
       .getSavedArticles(localStorage.getItem('token'))
       .then((articles) => {
         setSavedCards(articles);
@@ -274,7 +274,7 @@ function App() {
         console.log(err);
       });
 
-    auth
+    mainApi
       .checkToken(localStorage.getItem('token'))
       .then((user) => {
         setCurrentUser(user);

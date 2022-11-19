@@ -12,12 +12,18 @@ function NewsCard({
   isLoggedIn,
   currentPage,
   onSignInClick,
+  savedTitles,
   onBookmarkClick,
   onDeleteClick,
 }) {
+  const [isSaved, setIsSaved] = React.useState(savedTitles.includes(title));
+
+  React.useEffect(() => {
+    setIsSaved(savedTitles.includes(title));
+  }, [savedTitles, title]);
+
   const [isSignInButtonVisible, setIsSignInButtonVisible] =
     React.useState(false);
-  const [isBookmarked, setIsBookmarked] = React.useState(false);
   const [isRemoveButtonVisible, setIsRemoveButtonVisible] =
     React.useState(false);
 
@@ -28,7 +34,6 @@ function NewsCard({
   }
 
   function onBookmarkMouseLeave() {
-    console.log('hi');
     setIsSignInButtonVisible(false);
   }
 
@@ -42,16 +47,6 @@ function NewsCard({
 
   function handleBookmarkClick() {
     onBookmarkClick(newsCard);
-    if (isLoggedIn === true) {
-      setIsBookmarked(true);
-    }
-  }
-
-  function handleDeleteClick() {
-    onDeleteClick(newsCard);
-    if (isLoggedIn === true) {
-      setIsBookmarked(false);
-    }
   }
 
   return (
@@ -83,9 +78,7 @@ function NewsCard({
           <button
             type='button'
             className={`news-card__button news-card__button_type_bookmark ${
-              isBookmarked === true
-                ? 'news-card__button_type_bookmark_marked'
-                : ''
+              isSaved ? 'news-card__button_type_bookmark_marked' : ''
             }`}
             aria-label='bookmark article'
             onClick={handleBookmarkClick}
@@ -98,7 +91,7 @@ function NewsCard({
             aria-label='delete article'
             onMouseEnter={onDeleteMouseEnter}
             onMouseLeave={onDeleteMouseLeave}
-            onClick={handleDeleteClick}
+            onClick={() => onDeleteClick(newsCard)}
           ></button>
         )}
       </div>

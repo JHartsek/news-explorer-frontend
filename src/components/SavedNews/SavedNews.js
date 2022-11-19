@@ -2,7 +2,13 @@ import './SavedNews.css';
 
 import NewsCard from '../NewsCard/NewsCard';
 
-function SavedNews({ currentPage, savedCards, sortedKeywords, onDeleteClick }) {
+function SavedNews({
+  currentPage,
+  savedCards,
+  sortedKeywords,
+  savedTitles,
+  onDeleteClick,
+}) {
   let sortedCards = [];
   function sortCards() {
     sortedKeywords.forEach((word) => {
@@ -33,6 +39,7 @@ function SavedNews({ currentPage, savedCards, sortedKeywords, onDeleteClick }) {
               currentPage={currentPage}
               isLoggedIn={true}
               onDeleteClick={onDeleteClick}
+              savedTitles={savedTitles}
             />
           );
         })}

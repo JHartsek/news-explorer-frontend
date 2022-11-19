@@ -53,6 +53,7 @@ function App() {
     JSON.parse(localStorage.getItem('displayedCards'))
   );
   const [savedCards, setSavedCards] = React.useState([]);
+  const [savedTitles, setSavedTitles] = React.useState([]);
 
   const history = useHistory();
   const location = useLocation();
@@ -194,6 +195,12 @@ function App() {
   }, [savedCards]);
 
   React.useEffect(() => {
+    savedCards.forEach((card) => {
+      setSavedTitles((savedTitles) => [...savedTitles, card.title]);
+    });
+  }, [savedCards]);
+
+  React.useEffect(() => {
     localStorage.setItem('sortedKeywords', JSON.stringify(sortedKeywords));
   }, [sortedKeywords]);
 
@@ -231,14 +238,21 @@ function App() {
 
   function handleBookmarkClick(card) {
     const token = localStorage.getItem('token');
-    mainApi
-      .saveArticle(token, card, keyword)
-      .then((article) => {
-        setSavedCards([...savedCards, article]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    if (!savedTitles.includes(card.title)) {
+      mainApi
+        .saveArticle(token, card, keyword)
+        .then((article) => {
+          setSavedCards([...savedCards, article]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      const { title } = card;
+      const databaseCard = savedCards.find((card) => card.title === title);
+      handleDeleteClick(databaseCard);
+    }
   }
 
   function handleDeleteClick(card) {
@@ -323,6 +337,8 @@ function App() {
                 onSignInClick={handleSignInClick}
                 onBookmarkClick={handleBookmarkClick}
                 keyword={keyword}
+                savedCards={savedCards}
+                savedTitles={savedTitles}
               />
             )}
             <About />
@@ -374,6 +390,7 @@ function App() {
                 currentPage={currentPage}
                 savedCards={savedCards}
                 sortedKeywords={sortedKeywords}
+                savedTitles={savedTitles}
               />
               <Footer />
             </CurrentUserContext.Provider>

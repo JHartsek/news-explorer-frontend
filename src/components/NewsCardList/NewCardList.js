@@ -12,6 +12,7 @@ function NewsCardList({
   onSignInClick,
   isLoggedIn,
   currentPage,
+  savedTitles,
 }) {
   function formatDate(card) {
     const fullDate = new Date(card.publishedAt);
@@ -41,6 +42,7 @@ function NewsCardList({
               isLoggedIn={isLoggedIn}
               onBookmarkClick={onBookmarkClick}
               currentPage={currentPage}
+              savedTitles={savedTitles}
             />
           );
         })}

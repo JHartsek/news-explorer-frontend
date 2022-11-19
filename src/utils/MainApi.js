@@ -4,12 +4,16 @@ const headers = {
   'content-type': 'application/json',
 };
 
+export const sendRequest = (url, options) => {
+  return fetch(url, options).then(checkResponse);
+};
+
 export const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
 export const signup = (email, password, name) => {
-  return fetch(`${baseUrl}/signup`, {
+  return sendRequest(`${baseUrl}/signup`, {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({
@@ -17,43 +21,43 @@ export const signup = (email, password, name) => {
       email: email,
       password: password,
     }),
-  }).then(checkResponse);
+  });
 };
 
 export const signin = (email, password) => {
-  return fetch(`${baseUrl}/signin`, {
+  return sendRequest(`${baseUrl}/signin`, {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({
       password: password,
       email: email,
     }),
-  }).then(checkResponse);
+  });
 };
 
 export const checkToken = (token) => {
-  return fetch(`${baseUrl}/users/me`, {
+  return sendRequest(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 };
 
 export const getSavedArticles = (token) => {
-  return fetch(`${baseUrl}/articles`, {
+  return sendRequest(`${baseUrl}/articles`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 };
 
 export const saveArticle = (token, article, keyword) => {
   const { title, description, publishedAt, source, url, urlToImage } = article;
-  return fetch(`${baseUrl}/articles`, {
+  return sendRequest(`${baseUrl}/articles`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -68,15 +72,15 @@ export const saveArticle = (token, article, keyword) => {
       link: url,
       image: urlToImage,
     }),
-  }).then(checkResponse);
+  });
 };
 
 export const deleteArticle = (token, articleId) => {
-  return fetch(`${baseUrl}/articles/${articleId}`, {
+  return sendRequest(`${baseUrl}/articles/${articleId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 };

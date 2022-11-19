@@ -24,7 +24,7 @@ import * as mainApi from '../../utils/MainApi';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState(
-    localStorage.getItem('')
+    localStorage.getItem('currentPage')
   );
   const [isLoggedIn, setIsLoggedIn] = React.useState(
     localStorage.getItem('token') ? true : false
@@ -262,7 +262,7 @@ function App() {
 
     document.addEventListener('keydown', closeByEsc);
 
-    return document.addEventListener('keypress', closeByEsc);
+    return () => document.removeEventListener('keydown', closeByEsc);
   }, []);
 
   React.useEffect(() => {
@@ -287,7 +287,7 @@ function App() {
     getScreenWidth();
     window.addEventListener('resize', getScreenWidth);
 
-    return window.addEventListener('resize', getScreenWidth);
+    return () => window.removeEventListener('resize', getScreenWidth);
   }, []);
 
   return (

@@ -1,4 +1,5 @@
-const baseUrl = 'http://api.news-explorer-hartsek.students.nomoredomainssbs.ru';
+const baseUrl =
+  'https://api.news-explorer-hartsek.students.nomoredomainssbs.ru';
 const headers = {
   'content-type': 'application/json',
 };

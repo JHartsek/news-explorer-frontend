@@ -1,6 +1,7 @@
 import './NewsCard.css';
 
 import React from 'react';
+import { getSavedTitles } from '../../helpers/getSavedTitles';
 
 function NewsCard({
   newsCard,
@@ -13,10 +14,12 @@ function NewsCard({
   isLoggedIn,
   currentPage,
   onSignInClick,
-  savedTitles,
   onBookmarkClick,
   onDeleteClick,
+  savedCards,
 }) {
+  let savedTitles = [];
+  getSavedTitles(savedTitles, savedCards);
   const [isSaved, setIsSaved] = React.useState(savedTitles.includes(title));
 
   const [isSignInButtonVisible, setIsSignInButtonVisible] =

@@ -21,6 +21,7 @@ import SignInForm from '../SignInForm/SignInForm';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { searchForNews } from '../../utils/NewsApi';
 import * as mainApi from '../../utils/MainApi';
+import { getSavedTitles } from '../../helpers/getSavedTitles';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState(
@@ -53,7 +54,6 @@ function App() {
     JSON.parse(localStorage.getItem('displayedCards'))
   );
   const [savedCards, setSavedCards] = React.useState([]);
-  const [savedTitles, setSavedTitles] = React.useState([]);
 
   const history = useHistory();
   const location = useLocation();
@@ -200,12 +200,6 @@ function App() {
   }, [savedCards]);
 
   React.useEffect(() => {
-    savedCards.forEach((card) => {
-      setSavedTitles((savedTitles) => [...savedTitles, card.title]);
-    });
-  }, [savedCards]);
-
-  React.useEffect(() => {
     localStorage.setItem('sortedKeywords', JSON.stringify(sortedKeywords));
   }, [sortedKeywords]);
 
@@ -245,6 +239,8 @@ function App() {
   function handleBookmarkClick(card) {
     const token = localStorage.getItem('token');
 
+    let savedTitles = [];
+    getSavedTitles(savedTitles, savedCards);
     if (!savedTitles.includes(card.title)) {
       mainApi
         .saveArticle(token, card, keyword)
@@ -346,7 +342,6 @@ function App() {
                 onBookmarkClick={handleBookmarkClick}
                 keyword={keyword}
                 savedCards={savedCards}
-                savedTitles={savedTitles}
               />
             )}
             <About />
@@ -396,7 +391,6 @@ function App() {
               <SavedNews
                 onDeleteClick={handleDeleteClick}
                 currentPage={currentPage}
-                savedTitles={savedTitles}
                 savedCards={savedCards}
                 sortedKeywords={sortedKeywords}
               />

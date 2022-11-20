@@ -216,6 +216,7 @@ function App() {
 
   function handleSearch(keyword) {
     setSearchStatus('loading');
+    setDisplayedCards([]);
     setKeyword(keyword.toLowerCase());
     searchForNews(keyword)
       .then(({ articles }) => {
@@ -334,7 +335,7 @@ function App() {
             {(searchStatus === 'no-results' || searchStatus === 'error') && (
               <NoResults searchStatus={searchStatus} />
             )}
-            {displayedCards && (
+            {displayedCards.length > 0 && (
               <NewsCardList
                 displayedCards={displayedCards}
                 onShowMoreClick={showMoreCards}

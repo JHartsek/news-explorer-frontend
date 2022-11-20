@@ -77,8 +77,10 @@ function NewsCard({
         {currentPage === '/' ? (
           <button
             type='button'
-            className={`news-card__button news-card__button_type_bookmark ${
-              isSaved ? 'news-card__button_type_bookmark_marked' : ''
+            className={`news-card__button ${
+              isSaved & isLoggedIn
+                ? 'news-card__button_type_bookmark_marked'
+                : 'news-card__button_type_bookmark'
             }`}
             aria-label='bookmark article'
             onClick={handleBookmarkClick}

@@ -139,6 +139,11 @@ function App() {
         mainApi.checkToken(token).then((user) => {
           setCurrentUser(user);
         });
+        mainApi
+          .getSavedArticles(localStorage.getItem('token'))
+          .then((articles) => {
+            setSavedCards(articles);
+          });
       })
       .catch((err) => {
         setFormSubmissionError(err);
@@ -251,7 +256,9 @@ function App() {
     } else {
       const { title } = card;
       const databaseCard = savedCards.find((card) => card.title === title);
-      handleDeleteClick(databaseCard);
+      if (databaseCard) {
+        handleDeleteClick(databaseCard);
+      }
     }
   }
 
@@ -388,9 +395,9 @@ function App() {
               <SavedNews
                 onDeleteClick={handleDeleteClick}
                 currentPage={currentPage}
+                savedTitles={savedTitles}
                 savedCards={savedCards}
                 sortedKeywords={sortedKeywords}
-                savedTitles={savedTitles}
               />
               <Footer />
             </CurrentUserContext.Provider>

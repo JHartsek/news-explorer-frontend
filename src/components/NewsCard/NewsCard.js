@@ -1,4 +1,5 @@
 import './NewsCard.css';
+
 import React from 'react';
 
 function NewsCard({
@@ -17,10 +18,6 @@ function NewsCard({
   onDeleteClick,
 }) {
   const [isSaved, setIsSaved] = React.useState(savedTitles.includes(title));
-
-  React.useEffect(() => {
-    setIsSaved(savedTitles.includes(title));
-  }, [savedTitles, title]);
 
   const [isSignInButtonVisible, setIsSignInButtonVisible] =
     React.useState(false);
@@ -47,6 +44,9 @@ function NewsCard({
 
   function handleBookmarkClick() {
     onBookmarkClick(newsCard);
+    if (isSaved) {
+      setIsSaved(false);
+    }
   }
 
   return (

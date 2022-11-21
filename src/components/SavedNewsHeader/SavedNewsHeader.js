@@ -1,10 +1,12 @@
 import React from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { SavedArticlesContext } from '../../contexts/SavedArticlesContext';
 
 import './SavedNewsHeader.css';
 
-function SavedNewsHeader({ savedCards, sortedKeywords }) {
+function SavedNewsHeader({ sortedKeywords }) {
   const { name } = React.useContext(CurrentUserContext);
+  const savedCards = React.useContext(SavedArticlesContext);
 
   const displayKeywords = () => {
     if (sortedKeywords.length <= 3) {

@@ -19,6 +19,7 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import SignInForm from '../SignInForm/SignInForm';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { SavedArticlesContext } from '../../contexts/SavedArticlesContext';
 import { searchForNews } from '../../utils/NewsApi';
 import * as mainApi from '../../utils/MainApi';
 import { getSavedTitles } from '../../helpers/getSavedTitles';
@@ -313,62 +314,7 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <CurrentUserContext.Provider value={currentUser}>
-            <Header
-              currentPage={currentPage}
-              isLoggedIn={isLoggedIn}
-              device={device}
-              isMenuOpen={isMenuOpen}
-              onMenuClick={handleMenuClick}
-              onCloseMenu={closeMenu}
-              onHomeClick={handleHomeClick}
-              onSavedArticlesClick={handleSavedArticlesClick}
-              onSignInClick={handleSignInClick}
-              onSignOutClick={handleSignOutClick}
-            />
-            {isMenuOpen === true && <Menu onSignInClick={handleSignInClick} />}
-            <Main onSearchSubmit={handleSearch} />
-            {searchStatus === 'loading' && <Preloader />}
-            {(searchStatus === 'no-results' || searchStatus === 'error') && (
-              <NoResults searchStatus={searchStatus} />
-            )}
-            {displayedCards.length > 0 && (
-              <NewsCardList
-                displayedCards={displayedCards}
-                onShowMoreClick={showMoreCards}
-                showMoreStatus={showMoreStatus}
-                isLoggedIn={isLoggedIn}
-                currentPage={currentPage}
-                onSignInClick={handleSignInClick}
-                onBookmarkClick={handleBookmarkClick}
-                keyword={keyword}
-                savedCards={savedCards}
-              />
-            )}
-            <About />
-            <Footer />
-            <SignUpForm
-              isOpen={isSignUpFormOpen}
-              onClose={closeAllPopups}
-              onLinkClick={handleSignInClick}
-              onSignUp={handleSignUpSubmit}
-              formSubmissionError={formSubmissionError}
-            />
-            <SignInForm
-              isOpen={isSignInFormOpen}
-              onClose={closeAllPopups}
-              onLinkClick={handleSignUpClick}
-              onSignIn={handleSignInSubmit}
-              formSubmissionError={formSubmissionError}
-            />
-            <Popup isOpen={isRegistrationSuccessOpen} onClose={closeAllPopups}>
-              <RegistrationSuccess onLinkClick={handleSignInClick} />
-            </Popup>
-          </CurrentUserContext.Provider>
-        </Route>
-
-        <ProtectedRoute isLoggedIn={isLoggedIn}>
-          <Route path='/saved-news'>
-            <CurrentUserContext.Provider value={currentUser}>
+            <SavedArticlesContext.Provider value={savedCards}>
               <Header
                 currentPage={currentPage}
                 isLoggedIn={isLoggedIn}
@@ -384,17 +330,77 @@ function App() {
               {isMenuOpen === true && (
                 <Menu onSignInClick={handleSignInClick} />
               )}
-              <SavedNewsHeader
-                savedCards={savedCards}
-                sortedKeywords={sortedKeywords}
-              />
-              <SavedNews
-                onDeleteClick={handleDeleteClick}
-                currentPage={currentPage}
-                savedCards={savedCards}
-                sortedKeywords={sortedKeywords}
-              />
+              <Main onSearchSubmit={handleSearch} />
+              {searchStatus === 'loading' && <Preloader />}
+              {(searchStatus === 'no-results' || searchStatus === 'error') && (
+                <NoResults searchStatus={searchStatus} />
+              )}
+              {displayedCards.length > 0 && (
+                <NewsCardList
+                  displayedCards={displayedCards}
+                  onShowMoreClick={showMoreCards}
+                  showMoreStatus={showMoreStatus}
+                  isLoggedIn={isLoggedIn}
+                  currentPage={currentPage}
+                  onSignInClick={handleSignInClick}
+                  onBookmarkClick={handleBookmarkClick}
+                  keyword={keyword}
+                  savedCards={savedCards}
+                />
+              )}
+              <About />
               <Footer />
+              <SignUpForm
+                isOpen={isSignUpFormOpen}
+                onClose={closeAllPopups}
+                onLinkClick={handleSignInClick}
+                onSignUp={handleSignUpSubmit}
+                formSubmissionError={formSubmissionError}
+              />
+              <SignInForm
+                isOpen={isSignInFormOpen}
+                onClose={closeAllPopups}
+                onLinkClick={handleSignUpClick}
+                onSignIn={handleSignInSubmit}
+                formSubmissionError={formSubmissionError}
+              />
+              <Popup
+                isOpen={isRegistrationSuccessOpen}
+                onClose={closeAllPopups}
+              >
+                <RegistrationSuccess onLinkClick={handleSignInClick} />
+              </Popup>
+            </SavedArticlesContext.Provider>
+          </CurrentUserContext.Provider>
+        </Route>
+
+        <ProtectedRoute isLoggedIn={isLoggedIn}>
+          <Route path='/saved-news'>
+            <CurrentUserContext.Provider value={currentUser}>
+              <SavedArticlesContext.Provider value={savedCards}>
+                <Header
+                  currentPage={currentPage}
+                  isLoggedIn={isLoggedIn}
+                  device={device}
+                  isMenuOpen={isMenuOpen}
+                  onMenuClick={handleMenuClick}
+                  onCloseMenu={closeMenu}
+                  onHomeClick={handleHomeClick}
+                  onSavedArticlesClick={handleSavedArticlesClick}
+                  onSignInClick={handleSignInClick}
+                  onSignOutClick={handleSignOutClick}
+                />
+                {isMenuOpen === true && (
+                  <Menu onSignInClick={handleSignInClick} />
+                )}
+                <SavedNewsHeader sortedKeywords={sortedKeywords} />
+                <SavedNews
+                  onDeleteClick={handleDeleteClick}
+                  currentPage={currentPage}
+                  sortedKeywords={sortedKeywords}
+                />
+                <Footer />
+              </SavedArticlesContext.Provider>
             </CurrentUserContext.Provider>
           </Route>
         </ProtectedRoute>

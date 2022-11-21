@@ -2,6 +2,7 @@ import './NewsCard.css';
 
 import React from 'react';
 import { getSavedTitles } from '../../helpers/getSavedTitles';
+import { SavedArticlesContext } from '../../contexts/SavedArticlesContext';
 
 function NewsCard({
   newsCard,
@@ -16,8 +17,8 @@ function NewsCard({
   onSignInClick,
   onBookmarkClick,
   onDeleteClick,
-  savedCards,
 }) {
+  const savedCards = React.useContext(SavedArticlesContext);
   let savedTitles = [];
   getSavedTitles(savedTitles, savedCards);
   const [isSaved, setIsSaved] = React.useState(savedTitles.includes(title));
@@ -47,8 +48,8 @@ function NewsCard({
 
   function handleBookmarkClick() {
     onBookmarkClick(newsCard);
-    if (isSaved) {
-      setIsSaved(false);
+    if (isLoggedIn) {
+      setIsSaved(!isSaved);
     }
   }
 

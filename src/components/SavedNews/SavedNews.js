@@ -1,8 +1,11 @@
 import './SavedNews.css';
 
+import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
+import { SavedArticlesContext } from '../../contexts/SavedArticlesContext';
 
-function SavedNews({ currentPage, savedCards, sortedKeywords, onDeleteClick }) {
+function SavedNews({ currentPage, sortedKeywords, onDeleteClick }) {
+  const savedCards = React.useContext(SavedArticlesContext);
   let sortedCards = [];
   function sortCards() {
     sortedKeywords.forEach((word) => {
@@ -33,7 +36,6 @@ function SavedNews({ currentPage, savedCards, sortedKeywords, onDeleteClick }) {
               currentPage={currentPage}
               isLoggedIn={true}
               onDeleteClick={onDeleteClick}
-              savedCards={savedCards}
             />
           );
         })}

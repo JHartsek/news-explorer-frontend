@@ -335,7 +335,7 @@ function App() {
               {(searchStatus === 'no-results' || searchStatus === 'error') && (
                 <NoResults searchStatus={searchStatus} />
               )}
-              {displayedCards.length > 0 && (
+              {displayedCards & (displayedCards.length > 0) && (
                 <NewsCardList
                   displayedCards={displayedCards}
                   onShowMoreClick={showMoreCards}

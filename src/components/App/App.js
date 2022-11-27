@@ -98,6 +98,7 @@ function App() {
   function handleSignInClick() {
     setIsSignUpFormOpen(false);
     setIsRegistrationSuccessOpen(false);
+    setIsMenuOpen(false);
     setIsSignInFormOpen(true);
   }
 
@@ -109,6 +110,7 @@ function App() {
 
   function handleSignUpClick() {
     setIsSignInFormOpen(false);
+    setIsMenuOpen(false);
     setIsSignUpFormOpen(true);
   }
 
@@ -328,7 +330,11 @@ function App() {
                 onSignOutClick={handleSignOutClick}
               />
               {isMenuOpen === true && (
-                <Menu isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} onSignOutClick={handleSignOutClick}/>
+                <Menu
+                  isLoggedIn={isLoggedIn}
+                  onSignInClick={handleSignInClick}
+                  onSignOutClick={handleSignOutClick}
+                />
               )}
               <Main onSearchSubmit={handleSearch} />
               {searchStatus === 'loading' && <Preloader />}
@@ -391,7 +397,11 @@ function App() {
                   onSignOutClick={handleSignOutClick}
                 />
                 {isMenuOpen === true && (
-                  <Menu isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} onSignOutClick={handleSignOutClick}/>
+                  <Menu
+                    isLoggedIn={isLoggedIn}
+                    onSignInClick={handleSignInClick}
+                    onSignOutClick={handleSignOutClick}
+                  />
                 )}
                 <SavedNewsHeader sortedKeywords={sortedKeywords} />
                 <SavedNews

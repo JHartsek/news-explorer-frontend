@@ -87,6 +87,12 @@
   }
 }
 
+@media screen and (max-width: 544px) {
+  .saved-news-header__details {
+    width: calc(100vw - 34px);
+  }
+}
+
 .saved-news-header__details-keywords {
   font-weight: 700;
 }

@@ -328,7 +328,7 @@ function App() {
                 onSignOutClick={handleSignOutClick}
               />
               {isMenuOpen === true && (
-                <Menu onSignInClick={handleSignInClick} />
+                <Menu isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} onSignOutClick={handleSignOutClick}/>
               )}
               <Main onSearchSubmit={handleSearch} />
               {searchStatus === 'loading' && <Preloader />}
@@ -391,7 +391,7 @@ function App() {
                   onSignOutClick={handleSignOutClick}
                 />
                 {isMenuOpen === true && (
-                  <Menu onSignInClick={handleSignInClick} />
+                  <Menu isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} onSignOutClick={handleSignOutClick}/>
                 )}
                 <SavedNewsHeader sortedKeywords={sortedKeywords} />
                 <SavedNews

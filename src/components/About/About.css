@@ -17,6 +17,7 @@
     padding: 32px 24px 128px;
     flex-direction: column;
     align-items: center;
+    row-gap: 24px;
   }
 }
 

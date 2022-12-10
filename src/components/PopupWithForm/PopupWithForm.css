@@ -82,6 +82,17 @@
   color: rgba(182, 188, 191, 1);
 }
 
+.form__submission-error {
+  color: red;
+  text-align: center;
+}
+
+@media screen and (max-width: 544px) {
+  .form__submission-error {
+    padding-bottom: 8px;
+  }
+}
+
 .form__link-header {
   margin: 0;
   font-size: 14px;

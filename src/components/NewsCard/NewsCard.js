@@ -1,5 +1,8 @@
 import './NewsCard.css';
+
 import React from 'react';
+import { getSavedTitles } from '../../helpers/getSavedTitles';
+import { SavedArticlesContext } from '../../contexts/SavedArticlesContext';
 
 function NewsCard({
   newsCard,
@@ -13,15 +16,22 @@ function NewsCard({
   currentPage,
   onSignInClick,
   onBookmarkClick,
+  onDeleteClick,
 }) {
+  const savedCards = React.useContext(SavedArticlesContext);
+  let savedTitles = [];
+  getSavedTitles(savedTitles, savedCards);
+  const [isSaved, setIsSaved] = React.useState(savedTitles.includes(title));
+
   const [isSignInButtonVisible, setIsSignInButtonVisible] =
     React.useState(false);
-  const [isBookmarked, setIsBookmarked] = React.useState(false);
   const [isRemoveButtonVisible, setIsRemoveButtonVisible] =
     React.useState(false);
 
   function onBookmarkMouseEnter() {
-    setIsSignInButtonVisible(true);
+    if (isLoggedIn === false) {
+      setIsSignInButtonVisible(true);
+    }
   }
 
   function onBookmarkMouseLeave() {
@@ -36,10 +46,10 @@ function NewsCard({
     setIsRemoveButtonVisible(false);
   }
 
-  function onClick() {
+  function handleBookmarkClick() {
     onBookmarkClick(newsCard);
-    if (isLoggedIn === true) {
-      setIsBookmarked(true);
+    if (isLoggedIn) {
+      setIsSaved(!isSaved);
     }
   }
 
@@ -54,6 +64,7 @@ function NewsCard({
             className='news-card__button news-card__button_type_sign-in'
             aria-label='sign-in'
             onClick={onSignInClick}
+            onMouseLeave={onBookmarkMouseLeave}
           >
             Sign in to save articles
           </button>
@@ -70,15 +81,14 @@ function NewsCard({
         {currentPage === '/' ? (
           <button
             type='button'
-            className={`news-card__button news-card__button_type_bookmark ${
-              isBookmarked === true
+            className={`news-card__button ${
+              isSaved & isLoggedIn
                 ? 'news-card__button_type_bookmark_marked'
-                : ''
+                : 'news-card__button_type_bookmark'
             }`}
             aria-label='bookmark article'
-            onClick={onClick}
+            onClick={handleBookmarkClick}
             onMouseEnter={onBookmarkMouseEnter}
-            onMouseLeave={onBookmarkMouseLeave}
           ></button>
         ) : (
           <button
@@ -87,6 +97,7 @@ function NewsCard({
             aria-label='delete article'
             onMouseEnter={onDeleteMouseEnter}
             onMouseLeave={onDeleteMouseLeave}
+            onClick={() => onDeleteClick(newsCard)}
           ></button>
         )}
       </div>

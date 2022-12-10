@@ -1,4 +1,8 @@
+import React from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import './Navigation.css';
+
 import logoutIconWhite from '../../images/logout-white.svg';
 import logoutIconBlack from '../../images/logout-black.svg';
 
@@ -10,6 +14,8 @@ function Navigation({
   onSignInClick,
   onSignOutClick,
 }) {
+  const { name } = React.useContext(CurrentUserContext);
+
   return (
     <nav className='navigation'>
       <button
@@ -45,7 +51,7 @@ function Navigation({
               : ''
           }`}
         >
-          Elise
+          {name}
           <img
             className='button__icon'
             src={

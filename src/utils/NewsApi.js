@@ -1,10 +1,9 @@
-const baseUrl = 'https://newsapi.org/v2/everything';
+import { sendRequest } from './MainApi';
+
+const baseUrl = 'https://nomoreparties.co/news/v2/everything';
+
 const pageSize = 100;
 const apiKey = '1c5bbf6914524ce7941f074a37886f53';
-
-export const checkResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-};
 
 export const searchForNews = (keyword) => {
   const today = new Date();
@@ -23,7 +22,7 @@ export const searchForNews = (keyword) => {
   const previousDate = oneWeekAgo.getDate();
   const from = `${previousYear}-${previousMonth}-${previousDate}`;
 
-  return fetch(
+  return sendRequest(
     `${baseUrl}?q=${keyword}&apiKey=${apiKey}&from=${from}&to=${to}&pageSize=${pageSize}`
-  ).then(checkResponse);
+  );
 };

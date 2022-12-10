@@ -1,62 +1,44 @@
 import './SavedNews.css';
 
+import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
-import sampleCardImg from '../../images/sample-card.jpg';
+import { SavedArticlesContext } from '../../contexts/SavedArticlesContext';
 
-function SavedNews({ currentPage }) {
+function SavedNews({ currentPage, sortedKeywords, onDeleteClick }) {
+  const savedCards = React.useContext(SavedArticlesContext);
+  let sortedCards = [];
+  function sortCards() {
+    sortedKeywords.forEach((word) => {
+      savedCards.forEach((card) => {
+        if (card.keyword === word) {
+          sortedCards.push(card);
+        }
+      });
+    });
+  }
+  sortCards();
+
   return (
     <section className='saved-news'>
       <div className='saved-news__cards'>
-        <NewsCard
-          keyword='nature'
-          date='November 4, 2020'
-          imageUrl={sampleCardImg}
-          title='Everyone Needs a Special "Sit Spot" in Nature'
-          description={`Ever since I read Richard Louv's influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...`}
-          source='treehugger'
-          currentPage={currentPage}
-          isLoggedIn={true}
-        />
-        <NewsCard
-          keyword='nature'
-          date='November 4, 2020'
-          imageUrl={sampleCardImg}
-          title='Everyone Needs a Special "Sit Spot" in Nature'
-          description={`Ever since I read Richard Louv's influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...`}
-          source='treehugger'
-          currentPage={currentPage}
-          isLoggedIn={true}
-        />
-        <NewsCard
-          keyword='nature'
-          date='November 4, 2020'
-          imageUrl={sampleCardImg}
-          title='Everyone Needs a Special "Sit Spot" in Nature'
-          description={`Ever since I read Richard Louv's influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...`}
-          source='treehugger'
-          currentPage={currentPage}
-          isLoggedIn={true}
-        />
-        <NewsCard
-          keyword='nature'
-          date='November 4, 2020'
-          imageUrl={sampleCardImg}
-          title='Everyone Needs a Special "Sit Spot" in Nature'
-          description={`Ever since I read Richard Louv's influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...`}
-          source='treehugger'
-          currentPage={currentPage}
-          isLoggedIn={true}
-        />
-        <NewsCard
-          keyword='nature'
-          date='November 4, 2020'
-          imageUrl={sampleCardImg}
-          title='Everyone Needs a Special "Sit Spot" in Nature'
-          description={`Ever since I read Richard Louv's influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...`}
-          source='treehugger'
-          currentPage={currentPage}
-          isLoggedIn={true}
-        />
+        {sortedCards.map((card) => {
+          const { keyword, date, image, title, text, source } = card;
+          return (
+            <NewsCard
+              newsCard={card}
+              key={card._id}
+              keyword={keyword}
+              date={date}
+              imageUrl={image}
+              title={title}
+              description={text}
+              source={source}
+              currentPage={currentPage}
+              isLoggedIn={true}
+              onDeleteClick={onDeleteClick}
+            />
+          );
+        })}
       </div>
     </section>
   );

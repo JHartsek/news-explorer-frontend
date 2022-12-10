@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './RegistrationSuccess.css';
 
 function RegistrationSuccess({ onLinkClick }) {

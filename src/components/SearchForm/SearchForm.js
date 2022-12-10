@@ -17,6 +17,7 @@ function SearchForm({ onSearchSubmit }) {
         type='text'
         placeholder='Enter topic'
         onChange={handleChange}
+        value={inputValues.keyword || ''}
         required
       />
       <button
